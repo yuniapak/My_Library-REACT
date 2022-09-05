@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 .App-logo {
@@ -17,6 +17,10 @@
 }
 .App-link {
   color: #61dafb;
-}
+} */
 
+.signin{
+  color: black;
+  background-color: aqua;
+}
 
