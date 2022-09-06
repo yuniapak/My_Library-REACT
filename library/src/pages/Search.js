@@ -1,9 +1,12 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import BookSearch from '../components/BookSearch'
+import UserSearch from '../components/UserSearch'
 
 const Search = ({ API_KEY }) => {
   const [searchQuery, setSearchQuery] = useState('')
+  const [searchUserQuery, setSearchUserQuery] = useState('')
+  const [searchedUser, setSearchedUser] = useState([])
   const [books, setBooks] = useState([])
   const [searched, setSearched] = useState(false)
   const findBooks = async () => {
@@ -22,11 +25,19 @@ const Search = ({ API_KEY }) => {
     // }
     // let createBook = await axios.post(`http://localhost:3001/api/book`, bookData)
   }
-  useEffect =
-    (() => {
-      findBooks()
-    },
-    [])
+  //   useEffect(() => {
+  //       findBooks()
+  //     },
+  //     [])
+
+  const findUser = async () => {
+    const res = await axios.get(
+      `http://localhost:3001/api/user/${searchUserQuery}`
+    )
+    console.log(res.data)
+    setSearchedUser(res.data)
+  }
+
   return (
     <div>
       <BookSearch
@@ -34,8 +45,14 @@ const Search = ({ API_KEY }) => {
         findBooks={findBooks}
         searchQuery={searchQuery}
       />
+      <UserSearch
+        setSearchUserQuery={setSearchUserQuery}
+        searchUserQuery={searchUserQuery}
+        findUser={findUser}
+        searchedUser={searchedUser}
+      />
       <div>
-        {searched ? (
+        {/* {searched ? (
           <div>
             {books.map((book) => (
               <div key={book.volumeInfo.authors}>
@@ -48,7 +65,7 @@ const Search = ({ API_KEY }) => {
           </div>
         ) : (
           <div></div>
-        )}
+        )} */}
       </div>
     </div>
   )

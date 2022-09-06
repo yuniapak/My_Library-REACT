@@ -10,6 +10,7 @@ import Profile from './pages/Profile'
 import Registration from './pages/Registartion.js'
 import Search from './pages/Search'
 import Nav from './components/Nav'
+import UserPage from './pages/UserPage'
 const API_KEY = process.env.REACT_APP_BOOKS_API_KEY
 function App() {
   const [authenticated, toggleAuthenticated] = useState(false)
@@ -67,6 +68,7 @@ function App() {
               />
             }
           />
+          <Route path="/search/user/*" element={<UserPage />} />
           <Route path="/search" element={<Search API_KEY={API_KEY} />} />
           <Route path="/book" element={<BookCard />} />
         </Routes>
