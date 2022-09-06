@@ -10,7 +10,7 @@ import Profile from './pages/Profile'
 import Registration from './pages/Registartion.js'
 import Search from './pages/Search'
 import Nav from './components/Nav'
-
+const API_KEY = process.env.REACT_APP_BOOKS_API_KEY
 function App() {
   const [authenticated, toggleAuthenticated] = useState(false)
   const [user, setUser] = useState(null)
@@ -24,9 +24,8 @@ function App() {
 
   const checkToken = async () => {
     const user = await CheckSession()
-    getCurrentUser()
     setUser(user)
-    toggleAuthenticated(true)
+    // toggleAuthenticated(true)
   }
 
   useEffect(() => {
@@ -35,14 +34,6 @@ function App() {
       checkToken()
     }
   }, [])
-
-  const getCurrentUser = async () => {
-    const result = await axios.get(
-      `http://localhost:3001/api/user/userId/${user.id}`
-    )
-    console.log(result.data)
-    setCurrentUser(result.data)
-  }
 
   return (
     <div>
@@ -68,9 +59,15 @@ function App() {
           <Route path="/signup" element={<Registration />} />
           <Route
             path="/profile"
-            element={<Profile currentUser={currentUser} />}
+            element={
+              <Profile
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+                user={user}
+              />
+            }
           />
-          <Route path="/search" element={<Search />} />
+          <Route path="/search" element={<Search API_KEY={API_KEY} />} />
           <Route path="/book" element={<BookCard />} />
         </Routes>
       </main>

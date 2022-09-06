@@ -1,6 +1,8 @@
+import { NavLink } from "react-router-dom";
 const Nav = ()=>{
     return <div>
-        <h2>Nav bar</h2>
+        <NavLink to='/search'>Search</NavLink>
+        <NavLink to='/profile'>Profile</NavLink>
     </div>
 }
 export default Nav
