@@ -1,3 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap');
+
+body{
+  font-family: 'Courier Prime', monospace;
+
+}
+button{
+  border: none;
+  font-family: 'Courier Prime', monospace;
+  padding:9px;
+  background-color: rgb(227, 207, 181);
+}
+img{
+  width: 50px;
+}
 /* .App {
   text-align: center;
 }
@@ -24,3 +39,37 @@
   background-color: aqua;
 }
 
+/* Profile */
+.profile-user{
+  display: flex;
+  /* align-items: center; */
+  padding: 10px;
+}
+.profile-user img{
+  width: 100px;
+  border-radius: 20px;
+  vertical-align: bottom;
+  display: inline-block;
+  padding:10px;
+}
+.profile-user h2{
+  padding: 10px;
+  top:20px;
+}
+.profile-user-follow{
+  padding: 20px;
+
+
+}
+.profile-books{
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  text-align: center;
+}
+.profile-books-book{
+  margin:15px;
+  background-color: beige;
+  min-height:150px;
+  text-align: center;
+}

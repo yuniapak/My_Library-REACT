@@ -6,12 +6,31 @@ const UserPage = ({ user }) => {
   const [libraries, setLibraries] = useState([])
   const [followingList, setFollowingList] = useState([])
   const [follow, setFollow] = useState(false)
+  const [following, setFollowing] = useState('')
+  const [followers, setFollowers] = useState('')
   let currentLibraries = []
 
   const initialState = {
     id: `${location.state.user.id}`,
     username: `${location.state.user.username}`,
     image: `${location.state.user.image}`
+  }
+
+  const GetFollowing = async () => {
+    const result = await axios.get(
+      `http://localhost:3001/api/user/following/${user.id}`
+    )
+    console.log(result.data)
+    let followingCount = ' ' + result.data.length
+    setFollowing(followingCount)
+  }
+
+  const GetFollowers = async () => {
+    const res = await axios.get(
+      `http://localhost:3001/api/user/followers/${user.id}`
+    )
+    console.log(res.data.length)
+    setFollowers(res.data.length)
   }
 
   const followUser = async () => {
@@ -25,7 +44,6 @@ const UserPage = ({ user }) => {
     const result = await axios.get(
       `http://localhost:3001/api/user/following/${user.id}`
     )
-    console.log(result.data)
     setFollowingList(result.data)
     followingList.map((friendList) => {
       if (
@@ -57,6 +75,8 @@ const UserPage = ({ user }) => {
   }
 
   useEffect(() => {
+    GetFollowing()
+    GetFollowers()
     findLibraries()
     followed()
   }, [])
@@ -64,8 +84,12 @@ const UserPage = ({ user }) => {
   return (
     <div>
       <div className="profile-user">
-        <h2>{initialState.username}</h2>
         <img src={initialState.image} />
+        <h2>{initialState.username}</h2>
+        <div className="profile-user-follow">
+          <h3>Following: {following}</h3>
+          <h3>Followers: {followers}</h3>
+        </div>
       </div>
       {follow ? (
         <button onClick={followUser}>Follow</button>
