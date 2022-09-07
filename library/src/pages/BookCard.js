@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 const BookCard = () => {
   let location = useLocation()
   const [reviews, setReviews] = useState([])
-  const [firstReview, setFirstReview] = useState([])
+  const [firstReview, setFirstReview] = useState({})
   const initialState = {
     id: `${location.state.book.id}`,
     userId: `${location.state.book.userId}`,
@@ -23,6 +23,7 @@ const BookCard = () => {
     setReviews(result.data)
     reviews.map((review) => {
       if (review.userId == initialState.userId) {
+        console.log(review)
         setFirstReview(review)
       }
     })
@@ -33,30 +34,32 @@ const BookCard = () => {
 
   return (
     <div>
-      <div>
+      <div className="book-card">
         <img src={initialState.image} />
         <h2>{initialState.title}</h2>
         <h2>{initialState.author}</h2>
         <h3>{initialState.status}</h3>
         <p>{initialState.about}</p>
       </div>
-      <div>
-        {firstReview == [] ? (
+      <div className="book-card-first-review">
+        {/* {firstReview == {} ? null : (
           <div>
-            {firstReview.map((userReview) => (
-              <div key={userReview.id}>
-                <h2>{userReview.comment}</h2>
-                <h3>{userReview.rating}</h3>
-              </div>
-            ))}
+            <div className="book-card-user">
+              <h3>{firstReview.User.username}</h3>
+              <img src={firstReview.User.image} />
+            </div>
+            <h2>{firstReview.comment}</h2>
+            <h3>{firstReview.rating}</h3>
           </div>
-        ) : null}
-        <div>
+        )} */}
+        <div className="book-card-reviews">
           {reviews.map((review) => (
             <div key={review.id}>
-              <h3>{review.User.username}</h3>
-              <img src={review.User.image} />
-              <h2>{review.comment}</h2>
+              <div className="book-card-user">
+                <img src={review.User.image} />
+                <h3>{review.User.username}</h3>
+              </div>
+              <h2 className="book-card-h2">{review.comment}</h2>
               <h3>{review.rating}</h3>
             </div>
           ))}

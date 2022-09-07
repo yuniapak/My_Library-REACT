@@ -85,8 +85,8 @@ const UserPage = ({ user }) => {
     <div>
       <div className="profile-user">
         <img src={initialState.image} />
-        <h2>{initialState.username}</h2>
         <div className="profile-user-follow">
+          <h2>{initialState.username}</h2>
           <h3>Following: {following}</h3>
           <h3>Followers: {followers}</h3>
         </div>

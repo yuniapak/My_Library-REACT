@@ -7,15 +7,16 @@ const Search = ({ API_KEY }) => {
   const [searchQuery, setSearchQuery] = useState('')
   const [searchUserQuery, setSearchUserQuery] = useState('')
   const [searchedUser, setSearchedUser] = useState([])
-  const [books, setBooks] = useState([])
+  const [newBooks, setNewBooks] = useState([])
   const [searched, setSearched] = useState(false)
+
   const findBooks = async () => {
-    let result = await axios.get(
-      `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}:keyes&key=${API_KEY}
-      `
-    )
-    console.log(result.data)
-    // setBooks(result.data)
+    // let result = await axios.get(
+    //   `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}:keyes&key=${API_KEY}
+    //   `
+    // )
+    // console.log(result.data)
+    // setNewBooks(result.data)
     // setSearched(true)
     // let bookData = {
     //     title: result.data.volumeInfo,
@@ -44,6 +45,8 @@ const Search = ({ API_KEY }) => {
         setSearchQuery={setSearchQuery}
         findBooks={findBooks}
         searchQuery={searchQuery}
+        searched={searched}
+        newBooks={newBooks}
       />
       <UserSearch
         setSearchUserQuery={setSearchUserQuery}
@@ -52,9 +55,9 @@ const Search = ({ API_KEY }) => {
         searchedUser={searchedUser}
       />
       <div>
-        {/* {searched ? (
+        {searched ? (
           <div>
-            {books.map((book) => (
+            {newBooks.map((book) => (
               <div key={book.volumeInfo.authors}>
                 <h2>{book.volumeInfo.title}</h2>
                 <h2>{book.volumeInfo.authors}</h2>
@@ -63,9 +66,7 @@ const Search = ({ API_KEY }) => {
               </div>
             ))}
           </div>
-        ) : (
-          <div></div>
-        )} */}
+        ) : null}
       </div>
     </div>
   )

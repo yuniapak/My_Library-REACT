@@ -2,7 +2,7 @@
 
 body{
   font-family: 'Courier Prime', monospace;
-
+  background-color:rgb(140, 140, 104);
 }
 button{
   border: none;
@@ -12,6 +12,15 @@ button{
 }
 img{
   width: 50px;
+  border-radius: 20px;
+}
+a{
+  text-decoration:none;
+  color: white;
+}
+a:visited{
+  text-decoration:none;
+  color: white;
 }
 /* .App {
   text-align: center;
@@ -44,6 +53,9 @@ img{
   display: flex;
   /* align-items: center; */
   padding: 10px;
+  background-color: antiquewhite;
+  width: 70%;
+  border-radius: 20px;
 }
 .profile-user img{
   width: 100px;
@@ -51,13 +63,16 @@ img{
   vertical-align: bottom;
   display: inline-block;
   padding:10px;
+
 }
 .profile-user h2{
   padding: 10px;
   top:20px;
+  min-height:100%;
+
 }
 .profile-user-follow{
-  padding: 20px;
+  padding: 10px;
 
 
 }
@@ -72,4 +87,116 @@ img{
   background-color: beige;
   min-height:150px;
   text-align: center;
+}
+
+@media only screen and (max-width: 850px) {
+body{
+    width:100%;
+  }
+button{
+  border-radius: 20px;
+  }
+h2{
+  font-size: 20px;
+}
+h3{
+  font-size:16px;
+}
+.Nav{
+width:100%;
+padding:20px;
+align-items: center;
+border-bottom: solid 3px whitesmoke;
+margin:5px;
+}
+.Nav a{
+  padding: 10px;
+}
+.Nav a:active{
+  padding: 10px;
+  background-color: antiquewhite;
+  color:rgb(140, 140, 104);
+  border-radius: 20px;
+}
+  .profile-user{
+    display: flex;
+    align-items: flex-start;
+    padding: 10px;
+    background-color: antiquewhite;
+    width: 95%;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  .profile-user img{
+    max-width: 60px;
+    border-radius: 20px;
+    vertical-align: bottom;
+    display:inline;
+    padding:10px;
+    height: 100%;
+  }
+  .profile-user h2{
+    padding:0;
+    margin:0;
+    top:20px;
+    min-height:100%;
+    margin-bottom: 0px;
+  }
+  .profile-user-follow{
+    text-align: left;
+    margin-left: 15px;
+    padding:5px;
+  }
+  .profile-books-book{
+    margin:15px;
+    padding: 10px;
+    background-color: antiquewhite;
+    border-radius: 20px;
+    min-height:150px;
+    text-align: center;
+  }
+   /* Search Page */
+  .search{
+    display: flex;
+    align-items: flex-start;
+    margin:10px;
+  }
+  .search input{
+    margin-right:10px;
+    border-radius: 20px;
+    border: solid white 8px;
+    font-family: 'Courier Prime', monospace;
+  }
+  .search button{
+    border-radius:5px;
+  }
+  /*BookCard*/
+  .book-card{
+    background-color: antiquewhite;
+    padding:10px;
+    align-items: center;
+  }
+  .book-card-user{
+    display: flex;
+    /* align-items: center; */
+    padding: 10px;
+    background-color: antiquewhite;
+    width: 90%;
+    border-radius: 10px;
+  }
+  .book-card-user img{
+  margin-right: 20px; 
+  }
+  .book-card-h2{
+    padding: 10px;
+    font-size: 16px;
+    width: 90%;
+  }
+  .book-card-first-review{
+    padding:20px;
+    align-items: center;
+  }
+  .book-card-reviews{
+
+  }
 }
