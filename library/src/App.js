@@ -72,7 +72,10 @@ function App() {
           <Route path="/search/user/*" element={<UserPage user={user} />} />
           <Route path="/search" element={<Search API_KEY={API_KEY} />} />
           <Route path="profile/book/*" element={<BookCard />} />
-          <Route path="search/book/*" element={<SearchBookCard />} />
+          <Route
+            path="search/book/*"
+            element={<SearchBookCard user={user} />}
+          />
         </Routes>
       </main>
     </div>
