@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 const SearchBookCard = ({ book, user }) => {
@@ -7,6 +7,7 @@ const SearchBookCard = ({ book, user }) => {
   const [loading, setLoading] = useState(true)
   const [inLibrary, setInLibrary] = useState(false)
   const [library, setLibrary] = useState('')
+  let navigate = useNavigate()
   let location = useLocation()
   const initialState = {
     id: `${location.state.book.id}`,
@@ -29,17 +30,22 @@ const SearchBookCard = ({ book, user }) => {
       )
       console.log(res.data)
       setReviews(res.data)
-      addBook()
+      findBook()
     }
   }
-
-  const addBook = async () => {
+  const findBook = async () => {
     const result = await axios.get(
       `http://localhost:3001/api/book/userbook/book/${user.id}/${existBookId}`
     )
     setInLibrary(true)
     setLibrary(result.data[0].library)
   }
+  const addBook = async (initialState) => {
+    navigate(`bookForm/${initialState.title}`, {
+      state: { book: initialState }
+    })
+  }
+
   useEffect(() => {
     getReviews()
   }, [])
@@ -55,7 +61,13 @@ const SearchBookCard = ({ book, user }) => {
           {inLibrary ? (
             <h3>In {library}</h3>
           ) : (
-            <button onClick={() => {}}>Add to Library</button>
+            <button
+              onClick={() => {
+                addBook(initialState)
+              }}
+            >
+              Add to Library
+            </button>
           )}
         </div>
         <p>{initialState.about}</p>

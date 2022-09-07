@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { CheckSession } from './services/Auth'
 import axios from 'axios'
+import BookForm from './pages/BookForm'
 import BookCard from './pages/BookCard'
 import Login from './pages/Login'
 import Main from './pages/Main'
@@ -75,6 +76,10 @@ function App() {
           <Route
             path="search/book/*"
             element={<SearchBookCard user={user} />}
+          />
+          <Route
+            path="search/book/bookForm/*"
+            element={<BookForm user={user} />}
           />
         </Routes>
       </main>

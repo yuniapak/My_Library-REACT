@@ -68,8 +68,9 @@ const Search = ({ API_KEY }) => {
               >
                 <h2>{book.volumeInfo.title}</h2>
                 <h2>{book.volumeInfo.authors}</h2>
-                <img src={book.volumeInfo.imageLinks.thumbnail} />
-                {/* <p>{book.volumeInfo.description}</p> */}
+                {book.volumeInfo.imageLinks == undefined ? null : (
+                  <img src={book.volumeInfo.imageLinks.thumbnail} />
+                )}
               </div>
             ))}
           </div>
