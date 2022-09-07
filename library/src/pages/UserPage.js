@@ -1,7 +1,8 @@
-import { useLocation } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 const UserPage = ({ user }) => {
+  let navigate = useNavigate()
   let location = useLocation()
   const [libraries, setLibraries] = useState([])
   const [followingList, setFollowingList] = useState([])
@@ -37,9 +38,14 @@ const UserPage = ({ user }) => {
     const result = await axios.post(
       `http://localhost:3001/api/user/${user.id}/${initialState.id}`
     )
+
     console.log(result.data)
     setFollow(true)
+    navigate(`user/${initialState.id}`, {
+      state: { user: initialState }
+    })
   }
+
   const followed = async () => {
     const result = await axios.get(
       `http://localhost:3001/api/user/following/${user.id}`
@@ -52,6 +58,8 @@ const UserPage = ({ user }) => {
       ) {
         console.log('Alredy followed')
         setFollow(true)
+      } else {
+        setFollow(false)
       }
     })
   }
@@ -61,6 +69,9 @@ const UserPage = ({ user }) => {
     )
     console.log('Unfollowed')
     setFollow(false)
+    navigate(`user/${initialState.id}`, {
+      state: { user: initialState }
+    })
   }
 
   const findLibraries = async () => {
@@ -92,9 +103,9 @@ const UserPage = ({ user }) => {
         </div>
       </div>
       {follow ? (
-        <button onClick={followUser}>Follow</button>
-      ) : (
         <button onClick={unfollow}>Unfollow</button>
+      ) : (
+        <button onClick={followUser}>Follow</button>
       )}
       <div className="library-card">
         {libraries.map((library) => (

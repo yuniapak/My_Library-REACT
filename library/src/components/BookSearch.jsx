@@ -11,7 +11,7 @@ const BookSearch = ({searchQuery,setSearchQuery, findBooks, newBooks, searched})
     <input type='text' name='search' value ={searchQuery} placeholder = 'Book Title' onChange={handleChange}></input>
     <button type='submit' onClick={findBooks} className='search-btn'>Search</button>
     </div>
-    <div>
+    {/* <div>
         {searched ? (
           <div>
             {newBooks.map((book) => (
@@ -26,7 +26,7 @@ const BookSearch = ({searchQuery,setSearchQuery, findBooks, newBooks, searched})
         ) : (
           <div></div>
         )}
-      </div>
+      </div> */}
     </div>
     )
 }

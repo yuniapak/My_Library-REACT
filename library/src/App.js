@@ -9,6 +9,7 @@ import Main from './pages/Main'
 import Profile from './pages/Profile'
 import Registration from './pages/Registartion.js'
 import Search from './pages/Search'
+import SearchBookCard from './pages/SearchBookCard'
 import Nav from './components/Nav'
 import UserPage from './pages/UserPage'
 const API_KEY = process.env.REACT_APP_BOOKS_API_KEY
@@ -71,6 +72,7 @@ function App() {
           <Route path="/search/user/*" element={<UserPage user={user} />} />
           <Route path="/search" element={<Search API_KEY={API_KEY} />} />
           <Route path="profile/book/*" element={<BookCard />} />
+          <Route path="search/book/*" element={<SearchBookCard />} />
         </Routes>
       </main>
     </div>
