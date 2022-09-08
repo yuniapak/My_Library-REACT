@@ -1,12 +1,8 @@
 import { useNavigate, useLocation } from 'react-router-dom'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-const SearchBookCard = ({ book, user }) => {
-  const [existBookId, setExistBookId] = useState(null)
-  const [reviews, setReviews] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [inLibrary, setInLibrary] = useState(false)
-  const [library, setLibrary] = useState('')
+
+const SearchBookCard = ({ book, reviews, inLibrary, library, getReviews }) => {
   let navigate = useNavigate()
   let location = useLocation()
   const initialState = {
@@ -17,29 +13,6 @@ const SearchBookCard = ({ book, user }) => {
     about: `${location.state.book.volumeInfo.description}`
   }
 
-  const getReviews = async () => {
-    const result = await axios.get(
-      `http://localhost:3001/api/book/title/bookTitle?search=${initialState.title}`
-    )
-    console.log(result.data[0].id)
-    setExistBookId(result.data[0].id)
-    setLoading(false)
-    if (loading === false && existBookId != null) {
-      const res = await axios.get(
-        `http://localhost:3001/api/review/${existBookId}`
-      )
-      console.log(res.data)
-      setReviews(res.data)
-      findBook()
-    }
-  }
-  const findBook = async () => {
-    const result = await axios.get(
-      `http://localhost:3001/api/book/userbook/book/${user.id}/${existBookId}`
-    )
-    setInLibrary(true)
-    setLibrary(result.data[0].library)
-  }
   const addBook = async (initialState) => {
     navigate(`bookForm/${initialState.title}`, {
       state: { book: initialState }
@@ -47,7 +20,8 @@ const SearchBookCard = ({ book, user }) => {
   }
 
   useEffect(() => {
-    getReviews()
+    getReviews(initialState.title)
+    // findBook()
   }, [])
 
   return (

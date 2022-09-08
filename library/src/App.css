@@ -4,6 +4,21 @@ body{
   font-family: 'Courier Prime', monospace;
   background-color:rgb(140, 140, 104);
 }
+h1{
+  font-family: 'Courier Prime', monospace;
+}
+h2{
+  font-family: 'Courier Prime', monospace;
+}
+h3{
+  font-family: 'Courier Prime', monospace;
+}
+p{
+  font-family: 'Courier Prime', monospace;
+}
+a{
+  font-family: 'Courier Prime', monospace;
+}
 button{
   border: none;
   font-family: 'Courier Prime', monospace;
@@ -14,14 +29,14 @@ img{
   width: 50px;
   border-radius: 20px;
 }
-a{
+/* a{
   text-decoration:none;
   color: white;
 }
 a:visited{
   text-decoration:none;
   color: white;
-}
+} */
 /* .App {
   text-align: center;
 }
@@ -42,16 +57,16 @@ a:visited{
 .App-link {
   color: #61dafb;
 } */
-
+/* 
 .signin{
-  color: black;
-  background-color: aqua;
+
 }
 
 /* Profile */
+/*
 .profile-user{
   display: flex;
-  /* align-items: center; */
+  /* align-items: center; *//*
   padding: 10px;
   background-color: antiquewhite;
   width: 70%;
@@ -88,10 +103,11 @@ a:visited{
   min-height:150px;
   text-align: center;
 }
-
+*/
 @media only screen and (max-width: 850px) {
 body{
     width:100%;
+    background-color:rgb(140, 140, 104);
   }
 button{
   border-radius: 20px;
@@ -102,23 +118,30 @@ h2{
 h3{
   font-size:16px;
 }
+/*
 .Nav{
-width:100%;
+max-width:100%;
 padding:20px;
-align-items: center;
+display:inline-flex;
+
 border-bottom: solid 3px whitesmoke;
 margin:5px;
 }
 .Nav a{
   padding: 10px;
-}
+} 
 .Nav a:active{
   padding: 10px;
   background-color: antiquewhite;
   color:rgb(140, 140, 104);
   border-radius: 20px;
 }
+.nav-links{
+
+}
+*/
   .profile-user{
+    background-color:rgb(140, 140, 104);
     display: flex;
     align-items: flex-start;
     padding: 10px;
@@ -136,6 +159,7 @@ margin:5px;
     height: 100%;
   }
   .profile-user h2{
+    font-family: 'Courier Prime', monospace;
     padding:0;
     margin:0;
     top:20px;
@@ -156,6 +180,7 @@ margin:5px;
     text-align: center;
   }
    /* Search Page */
+   
   .search{
     display: flex;
     align-items: flex-start;
@@ -186,6 +211,7 @@ margin:5px;
     font-size: 10px;
   }
   /*BookCard*/
+  /*
   .book-card{
     background-color: antiquewhite;
     padding:10px;
@@ -193,7 +219,7 @@ margin:5px;
   }
   .book-card-user{
     display: flex;
-    /* align-items: center; */
+
     padding: 10px;
     background-color: antiquewhite;
     width: 90%;
@@ -213,5 +239,5 @@ margin:5px;
   }
   .book-card-reviews{
 
-  }
-}
+  } */
+} 

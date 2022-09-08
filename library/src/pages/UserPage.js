@@ -1,14 +1,19 @@
 import { useNavigate, useLocation } from 'react-router-dom'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-const UserPage = ({ user }) => {
+const UserPage = ({
+  user,
+  following,
+  followers,
+  GetFollowing,
+  GetFollowers
+}) => {
   let navigate = useNavigate()
   let location = useLocation()
   const [libraries, setLibraries] = useState([])
   const [followingList, setFollowingList] = useState([])
   const [follow, setFollow] = useState(false)
-  const [following, setFollowing] = useState('')
-  const [followers, setFollowers] = useState('')
+
   let currentLibraries = []
 
   const initialState = {
@@ -17,52 +22,44 @@ const UserPage = ({ user }) => {
     image: `${location.state.user.image}`
   }
 
-  const GetFollowing = async () => {
+  // Check if current user alredy following searched user
+  const followed = async () => {
+    setFollow(false)
     const result = await axios.get(
       `http://localhost:3001/api/user/following/${user.id}`
     )
-    console.log(result.data)
-    let followingCount = ' ' + result.data.length
-    setFollowing(followingCount)
-  }
-
-  const GetFollowers = async () => {
-    const res = await axios.get(
-      `http://localhost:3001/api/user/followers/${user.id}`
-    )
-    console.log(res.data.length)
-    setFollowers(res.data.length)
+    setFollowingList(result.data)
+    // console.log(result.data)
+    // console.log(user.id)
+    // console.log(parseInt(initialState.id))
+    // followingList.map((friendList) => {
+    //   console.log(friendList.userId)
+    // })
+    // followingList.map((friendList) => {
+    //   console.log(friendList.friendId)
+    // })
+    followingList.map((friendList) => {
+      if (
+        friendList.userId === user.id &&
+        friendList.friendId === parseInt(initialState.id)
+      ) {
+        console.log('Alredy followed')
+        setFollow(true)
+      }
+    })
   }
 
   const followUser = async () => {
     const result = await axios.post(
       `http://localhost:3001/api/user/${user.id}/${initialState.id}`
     )
-
     console.log(result.data)
     setFollow(true)
     navigate(`user/${initialState.id}`, {
       state: { user: initialState }
     })
   }
-
-  const followed = async () => {
-    const result = await axios.get(
-      `http://localhost:3001/api/user/following/${user.id}`
-    )
-    setFollowingList(result.data)
-    followingList.map((friendList) => {
-      if (
-        friendList.userId == user.id &&
-        friendList.friendId == initialState.id
-      ) {
-        console.log('Alredy followed')
-        setFollow(true)
-      } else {
-        setFollow(false)
-      }
-    })
-  }
+  //   unfollow searched user
   const unfollow = async () => {
     const result = await axios.delete(
       `http://localhost:3001/api/user/${user.id}/${initialState.id}`
@@ -73,7 +70,6 @@ const UserPage = ({ user }) => {
       state: { user: initialState }
     })
   }
-
   const findLibraries = async () => {
     const result = await axios.get(
       `http://localhost:3001/api/book/userbook/${initialState.id}`
@@ -86,10 +82,10 @@ const UserPage = ({ user }) => {
   }
 
   useEffect(() => {
-    GetFollowing()
-    GetFollowers()
-    findLibraries()
     followed()
+    GetFollowing(initialState.id)
+    GetFollowers(initialState.id)
+    findLibraries()
   }, [])
 
   return (

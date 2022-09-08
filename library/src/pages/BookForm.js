@@ -4,10 +4,8 @@ import { useState, useEffect } from 'react'
 const BookForm = ({ book, user }) => {
   let navigate = useNavigate()
   let location = useLocation()
-  const [newBook, setNewBook] = useState({})
-  const [createdBook, setCreatedBook] = useState({})
   const [matchBook, setMatchBook] = useState([])
-  const [loading, setLoading] = useState(true)
+
   const [userBook, setUserBook] = useState({
     status: '',
     library: ''
@@ -24,23 +22,26 @@ const BookForm = ({ book, user }) => {
     const result = await axios.get(
       `http://localhost:3001/api/book/title/bookTitle?search=${initialState.title}`
     )
-    console.log(result.data[0])
-    setMatchBook(result.data[0])
-    setLoading(false)
-    if (matchBook === undefined && loading == false) {
+    console.log(result.data)
+    setMatchBook(result.data)
+    if (!matchBook.length) {
       const book = {
         title: initialState.title,
         author: initialState.author,
-        about: '---',
+        about: initialState.about,
         image: initialState.image
       }
       const newBook = await axios.post('http://localhost:3001/api/book', book)
-      console.log('book created' + newBook)
+      console.log('book created' + book)
       setMatchBook(newBook.data)
     } else {
       console.log('book exist in db')
     }
   }
+  useEffect(() => {
+    createBook()
+  }, [])
+
   const handleChange = (event) => {
     setUserBook({ ...userBook, [event.target.name]: event.target.value })
     console.log(userBook)
@@ -62,9 +63,7 @@ const BookForm = ({ book, user }) => {
     console.log('UserBook created')
     navigate(`/search`)
   }
-  useEffect(() => {
-    createBook()
-  }, [])
+
   return (
     <div>
       <div>
