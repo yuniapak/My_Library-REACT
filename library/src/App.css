@@ -2,7 +2,7 @@
 
 body{
   font-family: 'Courier Prime', monospace;
-  background-color:rgb(140, 140, 104);
+  background-color:rgb(99, 99, 95);
 }
 h1{
   font-family: 'Courier Prime', monospace;
@@ -19,17 +19,17 @@ p{
 a{
   font-family: 'Courier Prime', monospace;
 }
-button{
+/* button{
   border: none;
   font-family: 'Courier Prime', monospace;
   padding:9px;
   background-color: rgb(227, 207, 181);
-}
+} */
 img{
   width: 50px;
   border-radius: 20px;
 }
-/* a{
+ a{
   text-decoration:none;
   color: white;
 }
@@ -37,7 +37,7 @@ a:visited{
   text-decoration:none;
   color: white;
 } */
-/* .App {
+ .App {
   text-align: center;
 }
 .App-logo {
@@ -54,19 +54,12 @@ a:visited{
   font-size: calc(10px + 2vmin);
   color: white;
 }
-.App-link {
-  color: #61dafb;
-} */
-/* 
-.signin{
-
-}
 
 /* Profile */
-/*
+
 .profile-user{
   display: flex;
-  /* align-items: center; *//*
+  /* align-items: center; */
   padding: 10px;
   background-color: antiquewhite;
   width: 70%;
@@ -99,32 +92,33 @@ a:visited{
 }
 .profile-books-book{
   margin:15px;
-  background-color: beige;
+  background-color: whitesmoke;
   min-height:150px;
   text-align: center;
 }
-*/
+
 @media only screen and (max-width: 850px) {
 body{
     width:100%;
-    background-color:rgb(140, 140, 104);
+    background-color:rgb(71, 71, 71);
   }
 button{
-  border-radius: 20px;
-  }
+  border: none;
+  font-family: 'Courier Prime', monospace;
+}
 h2{
   font-size: 20px;
 }
 h3{
   font-size:16px;
 }
-/*
+
 .Nav{
 max-width:100%;
 padding:20px;
 display:inline-flex;
 
-border-bottom: solid 3px whitesmoke;
+border-bottom: solid 3px rgb(32, 32, 32);
 margin:5px;
 }
 .Nav a{
@@ -132,26 +126,30 @@ margin:5px;
 } 
 .Nav a:active{
   padding: 10px;
-  background-color: antiquewhite;
-  color:rgb(140, 140, 104);
+  background-color: whitesmoke;
+  color:rgb(32, 32, 32);
   border-radius: 20px;
 }
 .nav-links{
 
 }
-*/
+
   .profile-user{
-    background-color:rgb(140, 140, 104);
     display: flex;
     align-items: flex-start;
     padding: 10px;
-    background-color: antiquewhite;
+    background-color: whitesmoke;
     width: 95%;
     border-radius: 20px;
     margin-bottom: 10px;
   }
+  .profile button{
+    background-color: whitesmoke;
+    padding: 8px;
+    margin:5px;
+  }
   .profile-user img{
-    max-width: 60px;
+    max-width: 70px;
     border-radius: 20px;
     vertical-align: bottom;
     display:inline;
@@ -171,14 +169,28 @@ margin:5px;
     margin-left: 15px;
     padding:5px;
   }
+  .library-card{
+    display:inline-flex;
+    border: white none ;
+    /* padding:5px; */
+ 
+
+  }
+  .library-card button{
+    padding:8px;
+    border-radius: 5px;
+    box-shadow: 2px 10px 20px rgba(206, 206, 206, 0.4);
+    font-family: 'Courier Prime', monospace;
+  }
   .profile-books-book{
     margin:15px;
     padding: 10px;
-    background-color: antiquewhite;
+    background-color: whitesmoke;
     border-radius: 20px;
     min-height:150px;
     text-align: center;
   }
+
    /* Search Page */
    
   .search{
@@ -192,9 +204,9 @@ margin:5px;
     border: solid white 8px;
     font-family: 'Courier Prime', monospace;
   }
-  .search button{
+  /* .search button{
     border-radius:5px;
-  }
+  } */
   .search-books{
     display: grid;
     max-width: 100%;
@@ -211,7 +223,7 @@ margin:5px;
     font-size: 10px;
   }
   /*BookCard*/
-  /*
+
   .book-card{
     background-color: antiquewhite;
     padding:10px;
@@ -219,7 +231,6 @@ margin:5px;
   }
   .book-card-user{
     display: flex;
-
     padding: 10px;
     background-color: antiquewhite;
     width: 90%;
@@ -239,5 +250,5 @@ margin:5px;
   }
   .book-card-reviews{
 
-  } */
+  } 
 } 

@@ -3,27 +3,33 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 const Profile = ({
+  loading,
   user,
-  following,
-  followers,
-  GetFollowing,
-  GetFollowers
+  // following,
+  // followers,
+  // getFollowing,
+  // getFollowers,
+  currentUser
+  // loadingFinished
 }) => {
   let navigate = useNavigate()
   const [libraries, setLibraries] = useState([])
   const [books, setBooks] = useState([])
   const [bookShow, setBookShow] = useState(false)
-  const [currentUser, setCurrentUser] = useState({})
   const [bookUser, setBookUser] = useState({})
+  const [followerLoading, setFollowerLoading] = useState(true)
+  const [userInfo, setUserInfo] = useState({})
+  const [following, setFollowing] = useState('')
+  const [followers, setFollowers] = useState('')
   let currentLibraries = []
 
-  console.log(user)
-  console.log(bookUser)
+  console.log(currentUser)
+  // console.log(bookUser)
 
   const getLibraries = async () => {
     try {
       const result = await axios.get(
-        `http://localhost:3001/api/book/userbook/${bookUser.id}`
+        `http://localhost:3001/api/book/userbook/${currentUser.id}`
       )
       result.data.map(({ library }) => {
         currentLibraries.push(library)
@@ -37,15 +43,16 @@ const Profile = ({
 
   const getCurrentUser = async () => {
     const result = await axios.get(
-      `http://localhost:3001/api/user/userId/${bookUser.id}`
+      `http://localhost:3001/api/user/userId/${currentUser.id}`
     )
     console.log(result.data)
-    setCurrentUser(result.data)
+    setUserInfo(result.data)
+    setFollowerLoading(false)
   }
 
   const getBooks = async (e) => {
     const result = await axios.get(
-      `http://localhost:3001/api/book/library/${bookUser.id}/${e.target.value}`
+      `http://localhost:3001/api/book/library/${currentUser.id}/${e.target.value}`
     )
     console.log(result.data)
     setBooks(result.data)
@@ -56,14 +63,38 @@ const Profile = ({
     navigate(`book/${book.id}`, { state: { book: book } })
   }
 
+  const getFollowing = async (id) => {
+    const result = await axios.get(
+      `http://localhost:3001/api/user/following/${id}`
+    )
+    console.log(id)
+    console.log(result.data)
+    let followingCount = ' ' + result.data.length
+    setFollowing(followingCount)
+    console.log('followers got')
+  }
+
+  const getFollowers = async (id) => {
+    const res = await axios.get(
+      `http://localhost:3001/api/user/followers/${id}`
+    )
+    console.log(id)
+    console.log('following got')
+    setFollowers(res.data.length)
+  }
+
   useEffect(() => {
-    setBookUser(user)
-    getLibraries()
-    getCurrentUser()
-    GetFollowing(user.id)
-    GetFollowers(user.id)
+    // setBookUser(user)
+    if (!loading) {
+      getCurrentUser()
+      // if (!followerLoading) {
+      console.log('getting followers')
+      getFollowing(currentUser.id)
+      getFollowers(currentUser.id)
+      // }
+    }
   }, [])
-  if (!currentUser && !bookUser && !user) {
+  if (loading && followerLoading) {
     return (
       <div>
         <h2>Loading...</h2>
@@ -72,16 +103,23 @@ const Profile = ({
   } else {
     console.log(currentUser)
     return (
-      <div>
+      <div className="profile">
         <div className="profile-user">
-          <img src={currentUser.image} />
+          <img src={userInfo.image} />
 
           <div className="profile-user-follow">
-            <h2>{currentUser.username}</h2>
-            <h3>Following: {following}</h3>
-            <h3>Followers: {followers}</h3>
+            <h2>{userInfo.username}</h2>
+            {/* {followerLoading ? ( */}
+            <div>
+              <h3>Following: {following}</h3>
+              <h3>Followers: {followers}</h3>
+            </div>
+            {/* ) : (
+              <h3>loading...</h3>
+            )} */}
           </div>
         </div>
+        <button onClick={getLibraries}>See Libraries</button>
         <div className="library-card">
           {libraries.map((library) => (
             <div key={library}>

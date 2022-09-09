@@ -1,5 +1,4 @@
 import './App.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { CheckSession } from './services/Auth'
@@ -18,14 +17,11 @@ const API_KEY = process.env.REACT_APP_BOOKS_API_KEY
 function App() {
   const [authenticated, toggleAuthenticated] = useState(false)
   const [user, setUser] = useState(null)
-
-  const [existBookId, setExistBookId] = useState(null)
   const [following, setFollowing] = useState('')
   const [followers, setFollowers] = useState('')
-  const [reviews, setReviews] = useState([])
   const [loading, setLoading] = useState(true)
-  const [library, setLibrary] = useState('')
-  const [inLibrary, setInLibrary] = useState(false)
+  const [loadingFinished, setLoadingFinished] = useState(false)
+  const [currentUser, setCurrentUser] = useState({})
 
   const handleLogOut = () => {
     setUser(null)
@@ -38,6 +34,8 @@ function App() {
     setUser(user)
     console.log(user)
     toggleAuthenticated(true)
+    console.log('authenticated!')
+    setLoading(false)
   }
 
   useEffect(() => {
@@ -49,7 +47,7 @@ function App() {
   }, [])
 
   //followers
-  const GetFollowing = async (id) => {
+  const getFollowing = async (id) => {
     const result = await axios.get(
       `http://localhost:3001/api/user/following/${id}`
     )
@@ -57,52 +55,18 @@ function App() {
     console.log(result.data)
     let followingCount = ' ' + result.data.length
     setFollowing(followingCount)
+    console.log('followers got')
+    setLoadingFinished(true)
   }
 
-  const GetFollowers = async (id) => {
+  const getFollowers = async (id) => {
     const res = await axios.get(
       `http://localhost:3001/api/user/followers/${id}`
     )
     console.log(id)
-
+    console.log('following got')
     setFollowers(res.data.length)
-  }
-
-  const getReviews = async (title) => {
-    setInLibrary(false)
-    const result = await axios.get(
-      `http://localhost:3001/api/book/title/bookTitle?search=${title}`
-    )
-    console.log(result.data)
-    result.data.map((elem) => {
-      setExistBookId(elem.id)
-    })
-    result.data.map((elem) => {
-      console.log(elem.id)
-    })
-    if (isNaN(existBookId)) {
-      console.log('not in library')
-      setInLibrary(false)
-    } else {
-      console.log('finding reviews')
-      const res = await axios.get(
-        `http://localhost:3001/api/review/${existBookId}`
-      )
-      console.log(res.data)
-      setReviews(res.data)
-      reviews.map((elem) => {
-        findBook(elem.id)
-      })
-    }
-  }
-  const findBook = async (bookId) => {
-    const result = await axios.get(
-      `http://localhost:3001/api/book/userbook/book/${user.id}/${bookId}`
-    )
-    setInLibrary(true)
-    console.log(result.data)
-    setLibrary(result.data[0].library)
-    setExistBookId(null)
+    setLoadingFinished(true)
   }
 
   return (
@@ -123,6 +87,8 @@ function App() {
               <Login
                 setUser={setUser}
                 toggleAuthenticated={toggleAuthenticated}
+                setLoading={setLoading}
+                setCurrentUser={setCurrentUser}
               />
             }
           />
@@ -131,11 +97,10 @@ function App() {
             path="/profile"
             element={
               <Profile
+                loading={loading}
                 user={user}
-                following={following}
-                followers={followers}
-                GetFollowing={GetFollowing}
-                GetFollowers={GetFollowers}
+                loadingFinished={loadingFinished}
+                currentUser={currentUser}
               />
             }
           />
@@ -146,8 +111,8 @@ function App() {
                 user={user}
                 following={following}
                 followers={followers}
-                GetFollowing={GetFollowing}
-                GetFollowers={GetFollowers}
+                getFollowing={getFollowing}
+                getFollowers={getFollowers}
               />
             }
           />
@@ -155,16 +120,7 @@ function App() {
           <Route path="profile/book/*" element={<BookCard />} />
           <Route
             path="search/book/*"
-            element={
-              <SearchBookCard
-                user={user}
-                reviews={reviews}
-                inLibrary={inLibrary}
-                library={library}
-                getReviews={getReviews}
-                findBook={findBook}
-              />
-            }
+            element={<SearchBookCard currentUser={currentUser} />}
           />
           <Route
             path="search/book/bookForm/*"

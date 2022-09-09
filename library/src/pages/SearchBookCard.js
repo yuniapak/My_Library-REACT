@@ -2,15 +2,57 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 
-const SearchBookCard = ({ book, reviews, inLibrary, library, getReviews }) => {
+const SearchBookCard = ({ currentUser }) => {
+  // const [book, setBook] = useState({})
+  const [reviews, setReviews] = useState([])
+  const [library, setLibrary] = useState('')
+  const [inLibrary, setInLibrary] = useState(false)
   let navigate = useNavigate()
   let location = useLocation()
+  let book = {}
   const initialState = {
     id: `${location.state.book.id}`,
     title: `${location.state.book.volumeInfo.title}`,
     author: `${location.state.book.volumeInfo.authors}`,
     image: `${location.state.book.volumeInfo.imageLinks.thumbnail}`,
     about: `${location.state.book.volumeInfo.description}`
+  }
+  console.log(currentUser)
+  const getReviews = async (title) => {
+    setInLibrary(false)
+    const result = await axios.get(
+      `http://localhost:3001/api/book/title/bookTitle?search=${title}`
+    )
+    console.log(result.data)
+    console.log(result.data[0])
+    book = result.data[0]
+    console.log(book)
+    console.log(book.id)
+    if (book !== {}) {
+      //   //   console.log('not in library')
+      //   //   setInLibrary(false)
+      //   // } else {
+      console.log('finding reviews')
+      console.log(book.id)
+      // setInLibrary(true)
+      const res = await axios.get(`http://localhost:3001/api/review/${book.id}`)
+      console.log(res.data)
+      setReviews(res.data)
+      findBook(book.id)
+    }
+  }
+  const findBook = async (bookId) => {
+    const result = await axios.get(
+      `http://localhost:3001/api/book/userbook/book/${currentUser.id}/${bookId}`
+    )
+    if (result.data == undefined) {
+      console.log('not in library')
+    }
+    console.log('finding Book')
+    setInLibrary(true)
+    console.log(result.data)
+    setLibrary(result.data[0].library)
+    // setExistBookId(null)
   }
 
   const addBook = async (initialState) => {
@@ -21,7 +63,6 @@ const SearchBookCard = ({ book, reviews, inLibrary, library, getReviews }) => {
 
   useEffect(() => {
     getReviews(initialState.title)
-    // findBook()
   }, [])
 
   return (

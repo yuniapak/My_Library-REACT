@@ -5,15 +5,15 @@ const UserPage = ({
   user,
   following,
   followers,
-  GetFollowing,
-  GetFollowers
+  getFollowing,
+  getFollowers
 }) => {
   let navigate = useNavigate()
   let location = useLocation()
   const [libraries, setLibraries] = useState([])
-  const [followingList, setFollowingList] = useState([])
+  // const [followingList, setFollowingList] = useState(false)
   const [follow, setFollow] = useState(false)
-
+  const [loading, setLoading] = useState(true)
   let currentLibraries = []
 
   const initialState = {
@@ -26,9 +26,10 @@ const UserPage = ({
   const followed = async () => {
     setFollow(false)
     const result = await axios.get(
-      `http://localhost:3001/api/user/following/${user.id}`
+      `http://localhost:3001/api/user/friendList/${user.id}/${initialState.id}`
     )
-    setFollowingList(result.data)
+    setFollow(result.data)
+    console.log(result.data)
     // console.log(result.data)
     // console.log(user.id)
     // console.log(parseInt(initialState.id))
@@ -38,15 +39,17 @@ const UserPage = ({
     // followingList.map((friendList) => {
     //   console.log(friendList.friendId)
     // })
-    followingList.map((friendList) => {
-      if (
-        friendList.userId === user.id &&
-        friendList.friendId === parseInt(initialState.id)
-      ) {
-        console.log('Alredy followed')
-        setFollow(true)
-      }
-    })
+    // followingList.map((friendList) => {
+    //   if (
+    //     friendList.userId === user.id &&
+    //     friendList.friendId === parseInt(initialState.id)
+    //   ) {
+    //     console.log('Alredy followed')
+    //     setFollow(true)
+    //     setLoading(false)
+    //   }
+    // })
+    setLoading(false)
   }
 
   const followUser = async () => {
@@ -83,34 +86,41 @@ const UserPage = ({
 
   useEffect(() => {
     followed()
-    GetFollowing(initialState.id)
-    GetFollowers(initialState.id)
+    getFollowing(initialState.id)
+    getFollowers(initialState.id)
     findLibraries()
   }, [])
-
-  return (
-    <div>
-      <div className="profile-user">
-        <img src={initialState.image} />
-        <div className="profile-user-follow">
-          <h2>{initialState.username}</h2>
-          <h3>Following: {following}</h3>
-          <h3>Followers: {followers}</h3>
+  if (loading) {
+    return (
+      <div>
+        <h1>Loading...</h1>
+      </div>
+    )
+  } else {
+    return (
+      <div>
+        <div className="profile-user">
+          <img src={initialState.image} />
+          <div className="profile-user-follow">
+            <h2>{initialState.username}</h2>
+            <h3>Following: {following}</h3>
+            <h3>Followers: {followers}</h3>
+          </div>
+        </div>
+        {follow ? (
+          <button onClick={unfollow}>Unfollow</button>
+        ) : (
+          <button onClick={followUser}>Follow</button>
+        )}
+        <div className="library-card">
+          {libraries.map((library) => (
+            <div key={library}>
+              <button value={library}>{library}</button>
+            </div>
+          ))}
         </div>
       </div>
-      {follow ? (
-        <button onClick={unfollow}>Unfollow</button>
-      ) : (
-        <button onClick={followUser}>Follow</button>
-      )}
-      <div className="library-card">
-        {libraries.map((library) => (
-          <div key={library}>
-            <button value={library}>{library}</button>
-          </div>
-        ))}
-      </div>
-    </div>
-  )
+    )
+  }
 }
 export default UserPage
