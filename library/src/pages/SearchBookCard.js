@@ -29,12 +29,8 @@ const SearchBookCard = ({ currentUser }) => {
     console.log(book)
     console.log(book.id)
     if (book !== {}) {
-      //   //   console.log('not in library')
-      //   //   setInLibrary(false)
-      //   // } else {
       console.log('finding reviews')
       console.log(book.id)
-      // setInLibrary(true)
       const res = await axios.get(`http://localhost:3001/api/review/${book.id}`)
       console.log(res.data)
       setReviews(res.data)
@@ -45,14 +41,14 @@ const SearchBookCard = ({ currentUser }) => {
     const result = await axios.get(
       `http://localhost:3001/api/book/userbook/book/${currentUser.id}/${bookId}`
     )
-    if (result.data == undefined) {
-      console.log('not in library')
-    }
-    console.log('finding Book')
-    setInLibrary(true)
-    console.log(result.data)
     setLibrary(result.data[0].library)
-    // setExistBookId(null)
+    if (setLibrary == []) {
+      console.log('not in library')
+    } else {
+      console.log('finding Book')
+      setInLibrary(true)
+      console.log(result.data)
+    }
   }
 
   const addBook = async (initialState) => {
@@ -69,7 +65,6 @@ const SearchBookCard = ({ currentUser }) => {
     <div>
       <div className="book-card">
         <h2>{initialState.title}</h2>
-
         <h3>{initialState.author}</h3>
         <img src={initialState.image} />
         <div>
