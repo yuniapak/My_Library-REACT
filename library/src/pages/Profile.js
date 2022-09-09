@@ -110,7 +110,7 @@ const Profile = ({
           <div className="profile-user-follow">
             <h2>{userInfo.username}</h2>
             {/* {followerLoading ? ( */}
-            <div>
+            <div className="profile-user-follow-tag">
               <h3>Following: {following}</h3>
               <h3>Followers: {followers}</h3>
             </div>

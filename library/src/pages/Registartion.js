@@ -57,7 +57,7 @@ const Registartion = () => {
           <input
             onChange={handleChange}
             name="iamge"
-            type="text"
+            type="file"
             placeholder=""
             value={formValues.image}
             required
@@ -85,7 +85,9 @@ const Registartion = () => {
             type="password"
             name="password"
             value={formValues.password}
+            minlength="8"
             required
+            title="8 characters minimum"
           />
         </div>
         <br></br>
@@ -97,6 +99,7 @@ const Registartion = () => {
             type="password"
             name="confirmPassword"
             value={formValues.confirmPassword}
+            minlength="8"
             required
           />
         </div>

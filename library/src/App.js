@@ -12,6 +12,7 @@ import Registration from './pages/Registartion.js'
 import Search from './pages/Search'
 import SearchBookCard from './pages/SearchBookCard'
 import Navigation from './components/Navigation'
+import Settings from './pages/Settings'
 import UserPage from './pages/UserPage'
 const API_KEY = process.env.REACT_APP_BOOKS_API_KEY
 function App() {
@@ -92,6 +93,7 @@ function App() {
               />
             }
           />
+          <Route path="/settings" element={<Settings />} />
           <Route path="/signup" element={<Registration />} />
           <Route
             path="/profile"
@@ -120,7 +122,7 @@ function App() {
           <Route path="profile/book/*" element={<BookCard />} />
           <Route
             path="search/book/*"
-            element={<SearchBookCard currentUser={currentUser} />}
+            element={<SearchBookCard currentUser={currentUser} user={user} />}
           />
           <Route
             path="search/book/bookForm/*"

@@ -1,12 +1,15 @@
 import { useNavigate, useLocation } from 'react-router-dom'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-
-const SearchBookCard = ({ currentUser }) => {
+import CreateReview from '../components/CreateReview.jsx'
+const SearchBookCard = ({ currentUser, user }) => {
   // const [book, setBook] = useState({})
   const [reviews, setReviews] = useState([])
   const [library, setLibrary] = useState('')
   const [inLibrary, setInLibrary] = useState(false)
+  const [reviewCard, setReviewCard] = useState(false)
+  const [bookId, setBookId] = useState(Number)
+  const [hidden, setHidden] = useState(true)
   let navigate = useNavigate()
   let location = useLocation()
   let book = {}
@@ -35,6 +38,7 @@ const SearchBookCard = ({ currentUser }) => {
       console.log(res.data)
       setReviews(res.data)
       findBook(book.id)
+      setBookId(book.id)
     }
   }
   const findBook = async (bookId) => {
@@ -55,6 +59,20 @@ const SearchBookCard = ({ currentUser }) => {
     navigate(`bookForm/${initialState.title}`, {
       state: { book: initialState }
     })
+  }
+  const showReviewCard = () => {
+    setReviewCard(true)
+  }
+
+  const unhid = () => {
+    if (hidden == true) {
+      setHidden(false)
+    } else {
+      setHidden(true)
+    }
+  }
+  const deleteReview = async (id) => {
+    await axios.delete(`http://localhost:3001/api/review/${id}`)
   }
 
   useEffect(() => {
@@ -79,18 +97,49 @@ const SearchBookCard = ({ currentUser }) => {
               Add to Library
             </button>
           )}
+          <button onClick={showReviewCard}>Review</button>
         </div>
         <p>{initialState.about}</p>
       </div>
+      {reviewCard ? (
+        <CreateReview
+          bookId={bookId}
+          currentUser={currentUser}
+          initialState={initialState}
+          user={user}
+        />
+      ) : null}
       <div>
         {reviews.map((review) => (
           <div key={review.id}>
-            <div className="book-card-user">
-              <img src={review.User.image} />
-              <h3>{review.User.username}</h3>
-            </div>
-            <h2 className="book-card-h2">{review.comment}</h2>
-            <h3>{review.rating}</h3>
+            {review.User.id == user.id ? (
+              <div>
+                <div className="book-card-user">
+                  <img src={review.User.image} />
+                  <h3>{review.User.username}</h3>
+                  <button onClick={unhid}>X</button>
+                  <button onClick={edit}>Edit</button>
+                </div>
+                <h2 className="book-card-h2">{review.comment}</h2>
+                <h3>{review.rating}</h3>
+                {hidden ? null : (
+                  <div className="search-book-card-banner">
+                    <button onClick={unhid}>X</button>
+                    <h3>Are you sure you want to delete your review?</h3>
+                    <button onClick={() => deleteReview(review.id)}>Yes</button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div>
+                <div className="book-card-user">
+                  <img src={review.User.image} />
+                  <h3>{review.User.username}</h3>
+                </div>
+                <h2 className="book-card-h2">{review.comment}</h2>
+                <h3>{review.rating}</h3>
+              </div>
+            )}
           </div>
         ))}
       </div>

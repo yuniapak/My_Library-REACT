@@ -4,6 +4,12 @@ body{
   font-family: 'Courier Prime', monospace;
   background-color:rgb(99, 99, 95);
 }
+input{
+  font-family: 'Courier Prime', monospace;
+  padding:5px;
+  border-radius:5px;
+  border: white 2px;
+}
 h1{
   font-family: 'Courier Prime', monospace;
 }
@@ -61,7 +67,7 @@ a:visited{
   display: flex;
   /* align-items: center; */
   padding: 10px;
-  background-color: antiquewhite;
+  background-color: whitesmoke;
   width: 70%;
   border-radius: 20px;
 }
@@ -81,8 +87,6 @@ a:visited{
 }
 .profile-user-follow{
   padding: 10px;
-
-
 }
 .profile-books{
   display: flex;
@@ -103,8 +107,11 @@ body{
     background-color:rgb(71, 71, 71);
   }
 button{
-  border: none;
+  border: 10px white;
+  padding: 8px;
+  border-radius: 10px;
   font-family: 'Courier Prime', monospace;
+
 }
 h2{
   font-size: 20px;
@@ -112,27 +119,102 @@ h2{
 h3{
   font-size:16px;
 }
-
 .Nav{
 max-width:100%;
 padding:20px;
 display:inline-flex;
-
 border-bottom: solid 3px rgb(32, 32, 32);
 margin:5px;
 }
 .Nav a{
   padding: 10px;
 } 
-.Nav a:active{
-  padding: 10px;
-  background-color: whitesmoke;
-  color:rgb(32, 32, 32);
-  border-radius: 20px;
+.Nav-hidden{
+  height: 0;
+  width: fit-content;
+  /* border-radius: var(--cornerRad);
+  background-color: var(--primColor); */
+  animation: 2s fadeMe;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2);
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  opacity:0;
+  z-index:10;
 }
-.nav-links{
+.Nav-unhidden{
+  height: 0;
+  width: fit-content;
+  /* border-radius: var(--cornerRad);
+  background-color: var(--primColor); */
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2);
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index:10;
+}
+.Nav-hidden a {
+  padding: 12px 24px;
+  margin: 0 16px;
+  color: whitesmoke;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  background-color: rgba(245,245,245,0.3);
+  text-decoration: none;
+  text-align: center;
+  transition: filter 200ms linear 0s;
+} 
+.nav-column{
+  flex-direction:column;
+}
+.nav-settings{
+  background-color: rgb(71, 71, 71);
+  margin-left: 50%;
+  /* width: 0%; */
+
+  border: none;
+  border-radius: none;
+  margin-top: -20px;
+}
+.nav-settings img{
+  width: 50%;
 
 }
+.Nav-unhidden a {
+  padding: 12px 24px;
+  margin: 0 16px;
+  color: rgb(79, 79, 79);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  background-color: rgba(245,245,245,0.6);
+  text-decoration: none;
+  text-align: center;
+  transition: filter 200ms linear 0s;
+} 
+
+/* .Nav-hidden a:hover {
+  filter: brightness(200%);
+} */
+@keyframes menuAnim {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 312px;
+  }
+}
+@keyframes fadeMe {
+  0% {
+    opacity: 1;
+  }
+  99% {
+    opacity: 0;
+  }
+  100%{
+    overflow: hidden;
+  }
+} */
+
 
   .profile-user{
     display: flex;
@@ -168,6 +250,9 @@ margin:5px;
     text-align: left;
     margin-left: 15px;
     padding:5px;
+  }
+  .profile-user-follow-tag{
+    margin-top: -73%;
   }
   .library-card{
     display:inline-flex;
@@ -211,7 +296,7 @@ margin:5px;
     display: grid;
     max-width: 100%;
     grid-template-columns: auto auto auto;
-    background-color: antiquewhite;
+    background-color: whitesmoke;
     gap: 10px 20px;
     align-items: center;
   }
@@ -225,14 +310,15 @@ margin:5px;
   /*BookCard*/
 
   .book-card{
-    background-color: antiquewhite;
+    background-color: whitesmoke;
     padding:10px;
     align-items: center;
   }
   .book-card-user{
+    margin-top:10px;
     display: flex;
     padding: 10px;
-    background-color: antiquewhite;
+    background-color: whitesmoke;
     width: 90%;
     border-radius: 10px;
   }
@@ -247,6 +333,22 @@ margin:5px;
   .book-card-first-review{
     padding:20px;
     align-items: center;
+  }
+  .search-book-card-banner{
+    position:fixed;
+    width:80%;
+    background: grey;
+    border: solid grey ;
+    border-radius: 8px;
+    top: 50%;
+    right: 10%;
+    padding:5px;
+  }
+  .search-book-card-banner h3{
+    text-align: center;
+    margin:10px;
+    padding:10px;
+    width:80%;
   }
   .book-card-reviews{
 
