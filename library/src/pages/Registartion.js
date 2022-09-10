@@ -54,11 +54,19 @@ const Registartion = () => {
         <div className="input-wrapper">
           <label htmlFor="image">Profile Picture</label>
           <br></br>
-          <input
+          {/* <input
             onChange={handleChange}
             name="iamge"
             type="file"
             placeholder=""
+            value={formValues.image}
+            required
+          /> */}
+          <input
+            onChange={handleChange}
+            name="image"
+            type="text"
+            placeholder="image URL"
             value={formValues.image}
             required
           />

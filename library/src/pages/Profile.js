@@ -22,14 +22,13 @@ const Profile = ({
   const [following, setFollowing] = useState('')
   const [followers, setFollowers] = useState('')
   let currentLibraries = []
-
   console.log(currentUser)
   // console.log(bookUser)
 
   const getLibraries = async () => {
     try {
       const result = await axios.get(
-        `http://localhost:3001/api/book/userbook/${currentUser.id}`
+        `http://localhost:3001/api/book/userbook/${user.id}`
       )
       result.data.map(({ library }) => {
         currentLibraries.push(library)
@@ -43,7 +42,7 @@ const Profile = ({
 
   const getCurrentUser = async () => {
     const result = await axios.get(
-      `http://localhost:3001/api/user/userId/${currentUser.id}`
+      `http://localhost:3001/api/user/userId/${user.id}`
     )
     console.log(result.data)
     setUserInfo(result.data)
@@ -52,7 +51,7 @@ const Profile = ({
 
   const getBooks = async (e) => {
     const result = await axios.get(
-      `http://localhost:3001/api/book/library/${currentUser.id}/${e.target.value}`
+      `http://localhost:3001/api/book/library/${user.id}/${e.target.value}`
     )
     console.log(result.data)
     setBooks(result.data)
@@ -89,8 +88,8 @@ const Profile = ({
       getCurrentUser()
       // if (!followerLoading) {
       console.log('getting followers')
-      getFollowing(currentUser.id)
-      getFollowers(currentUser.id)
+      getFollowing(user.id)
+      getFollowers(user.id)
       // }
     }
   }, [])

@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
-const CreateReview = ({currentUser, bookId, initialState, user})=>{
+const CreateReview = ({currentUser, bookId, initialState, user, getReviews})=>{
     let navigate = useNavigate()
     const [review, setReview] = useState({
         userId: user.id,
@@ -9,7 +9,7 @@ const CreateReview = ({currentUser, bookId, initialState, user})=>{
         comment: '',
         rating: ''
       })
-
+      console.log(bookId)
       const addReview = async(newReview)=>{
       const result = await axios.post(`http://localhost:3001/api/review/${bookId}/${user.id}`, newReview)
       console.log(newReview)
@@ -29,6 +29,7 @@ const CreateReview = ({currentUser, bookId, initialState, user})=>{
           rating: ''
         })
         console.log('Review created')
+        getReviews(initialState.title)
         // navigate(`/search/book/${initialState.id}`,{
         //     state: { book: initialState }})
       }
@@ -36,6 +37,7 @@ const CreateReview = ({currentUser, bookId, initialState, user})=>{
     return <div>
         <h2>Create Review</h2>
         <form onSubmit={handleSubmit}>
+          <div className="create-review-form">
             <textarea maxLength="150"
             onChange={handleChange}
             name="comment"
@@ -58,7 +60,10 @@ const CreateReview = ({currentUser, bookId, initialState, user})=>{
             <option value="4">4</option>
             <option value="5">5</option>
           </select>
+          </div>
+          <div className="review-btn">
             <button type="submit">Send</button>
+            </div>
         </form>
     </div>
 }

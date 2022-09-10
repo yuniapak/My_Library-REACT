@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 const BookForm = ({ book, user }) => {
   let navigate = useNavigate()
   let location = useLocation()
-  const [matchBook, setMatchBook] = useState([])
+  const [matchBook, setMatchBook] = useState({})
 
   const [userBook, setUserBook] = useState({
     status: '',
@@ -19,12 +19,15 @@ const BookForm = ({ book, user }) => {
   }
 
   const createBook = async () => {
+    //find book if exist by title
     const result = await axios.get(
       `http://localhost:3001/api/book/title/bookTitle?search=${initialState.title}`
     )
     console.log(result.data)
-    setMatchBook(result.data)
-    if (!matchBook.length) {
+    setMatchBook(result.data[0])
+    //if length of array is 0 book does not exist
+    if (!result.data.length) {
+      //creating new book for db
       const book = {
         title: initialState.title,
         author: initialState.author,
@@ -41,7 +44,7 @@ const BookForm = ({ book, user }) => {
   useEffect(() => {
     createBook()
   }, [])
-
+  //creating UserBook
   const handleChange = (event) => {
     setUserBook({ ...userBook, [event.target.name]: event.target.value })
     console.log(userBook)

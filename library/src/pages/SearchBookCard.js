@@ -1,6 +1,7 @@
 import { useNavigate, useLocation } from 'react-router-dom'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import UpdateReview from '../components/UpdateReview.jsx'
 import CreateReview from '../components/CreateReview.jsx'
 const SearchBookCard = ({ currentUser, user }) => {
   // const [book, setBook] = useState({})
@@ -10,6 +11,7 @@ const SearchBookCard = ({ currentUser, user }) => {
   const [reviewCard, setReviewCard] = useState(false)
   const [bookId, setBookId] = useState(Number)
   const [hidden, setHidden] = useState(true)
+  const [editing, setEditing] = useState(false)
   let navigate = useNavigate()
   let location = useLocation()
   let book = {}
@@ -20,9 +22,10 @@ const SearchBookCard = ({ currentUser, user }) => {
     image: `${location.state.book.volumeInfo.imageLinks.thumbnail}`,
     about: `${location.state.book.volumeInfo.description}`
   }
-  console.log(currentUser)
+  console.log(bookId)
   const getReviews = async (title) => {
     setInLibrary(false)
+    //finding book by title
     const result = await axios.get(
       `http://localhost:3001/api/book/title/bookTitle?search=${title}`
     )
@@ -31,20 +34,27 @@ const SearchBookCard = ({ currentUser, user }) => {
     book = result.data[0]
     console.log(book)
     console.log(book.id)
+    //if book exist
     if (book !== {}) {
       console.log('finding reviews')
       console.log(book.id)
+      //find review
       const res = await axios.get(`http://localhost:3001/api/review/${book.id}`)
       console.log(res.data)
       setReviews(res.data)
-      findBook(book.id)
+      //finding if book in UserBooks
       setBookId(book.id)
+      findBook(book.id)
     }
   }
-  const findBook = async (bookId) => {
+  const findBook = async (bookID) => {
+    //get userbook
+    console.log(user.id)
+    console.log(bookID)
     const result = await axios.get(
-      `http://localhost:3001/api/book/userbook/book/${currentUser.id}/${bookId}`
+      `http://localhost:3001/api/book/userbook/book/${user.id}/${bookID}`
     )
+    console.log(result.data)
     setLibrary(result.data[0].library)
     if (setLibrary == []) {
       console.log('not in library')
@@ -60,7 +70,28 @@ const SearchBookCard = ({ currentUser, user }) => {
       state: { book: initialState }
     })
   }
+  const createBook = async () => {
+    console.log(initialState)
+    console.log(initialState.title)
+    const book = {
+      title: initialState.title,
+      author: initialState.author,
+      about: initialState.about,
+      image: initialState.image
+    }
+    const newBook = await axios.post('http://localhost:3001/api/book', book)
+    console.log('book created' + book)
+    console.log(newBook.data.id)
+    setBookId(newBook.data.id)
+  }
+
   const showReviewCard = () => {
+    if (bookId == 0) {
+      console.log('book created!')
+      createBook()
+    } else {
+      console.log('book exist')
+    }
     setReviewCard(true)
   }
 
@@ -73,6 +104,14 @@ const SearchBookCard = ({ currentUser, user }) => {
   }
   const deleteReview = async (id) => {
     await axios.delete(`http://localhost:3001/api/review/${id}`)
+  }
+  const edit = () => {
+    if (editing == false) {
+      setEditing(true)
+    } else {
+      setEditing(false)
+      getReviews(initialState.title)
+    }
   }
 
   useEffect(() => {
@@ -107,6 +146,7 @@ const SearchBookCard = ({ currentUser, user }) => {
           currentUser={currentUser}
           initialState={initialState}
           user={user}
+          getReviews={getReviews}
         />
       ) : null}
       <div>
@@ -114,19 +154,27 @@ const SearchBookCard = ({ currentUser, user }) => {
           <div key={review.id}>
             {review.User.id == user.id ? (
               <div>
-                <div className="book-card-user">
-                  <img src={review.User.image} />
-                  <h3>{review.User.username}</h3>
-                  <button onClick={unhid}>X</button>
-                  <button onClick={edit}>Edit</button>
-                </div>
-                <h2 className="book-card-h2">{review.comment}</h2>
-                <h3>{review.rating}</h3>
-                {hidden ? null : (
-                  <div className="search-book-card-banner">
-                    <button onClick={unhid}>X</button>
-                    <h3>Are you sure you want to delete your review?</h3>
-                    <button onClick={() => deleteReview(review.id)}>Yes</button>
+                {editing ? (
+                  <UpdateReview review={review} edit={edit} />
+                ) : (
+                  <div>
+                    <div className="book-card-user">
+                      <img src={review.User.image} />
+                      <h3>{review.User.username}</h3>
+                      <button onClick={unhid}>X</button>
+                      <button onClick={edit}>Edit</button>
+                    </div>
+                    <h2 className="book-card-h2">{review.comment}</h2>
+                    <h3>{review.rating}</h3>
+                    {hidden ? null : (
+                      <div className="search-book-card-banner">
+                        <button onClick={unhid}>X</button>
+                        <h3>Are you sure you want to delete your review?</h3>
+                        <button onClick={() => deleteReview(review.id)}>
+                          Yes
+                        </button>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>

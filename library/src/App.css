@@ -252,7 +252,10 @@ margin:5px;
     padding:5px;
   }
   .profile-user-follow-tag{
-    margin-top: -73%;
+    margin-top: -65%;
+  }
+  .profile-user-follow-tag h3{
+    font-size: 13px;
   }
   .library-card{
     display:inline-flex;
@@ -353,4 +356,21 @@ margin:5px;
   .book-card-reviews{
 
   } 
+  .create-review-form{
+    display: flex;
+    align-items: flex-start;
+    background:whitesmoke;
+    padding:10px;
+  }
+  .create-review-form select{
+    padding: 3px;
+    margin-left:7px;
+    font-family: 'Courier Prime', monospace;
+  }
+  .review-btn{
+    background:whitesmoke;
+  }
+  .review-btn button{
+    align-self: center;
+  }
 } 
