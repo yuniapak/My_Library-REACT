@@ -35,21 +35,23 @@ const CreateReview = ({currentUser, bookId, initialState, user, getReviews})=>{
       }
 
     return <div>
-        <h2>Create Review</h2>
+        {/* <h2>Create Review</h2> */}
         <form onSubmit={handleSubmit}>
-          <div className="create-review-form">
-            <textarea maxLength="150"
+          <div className="review">
+            <input maxLength="150"
+            className='review-input'
             onChange={handleChange}
             name="comment"
             type="text"
             placeholder="review"
             value={review.comment}
-            required></textarea>
+            required></input>
             <select
             id="value"
             name="rating"
             onChange={handleChange}
             value={review.rating}
+            className='review-select'
           >
             <option value="" disabled>
               Rating
@@ -61,8 +63,8 @@ const CreateReview = ({currentUser, bookId, initialState, user, getReviews})=>{
             <option value="5">5</option>
           </select>
           </div>
-          <div className="review-btn">
-            <button type="submit">Send</button>
+          <div >
+            <button type="submit" className='review-btn'>Send</button>
             </div>
         </form>
     </div>

@@ -23,6 +23,7 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [loadingFinished, setLoadingFinished] = useState(false)
   const [currentUser, setCurrentUser] = useState({})
+  const [userInfo, setUserInfo] = useState({})
 
   const handleLogOut = () => {
     setUser(null)
@@ -93,7 +94,7 @@ function App() {
               />
             }
           />
-          <Route path="/settings" element={<Settings />} />
+          <Route path="/settings" element={<Settings userInfo={userInfo} />} />
           <Route path="/signup" element={<Registration />} />
           <Route
             path="/profile"
@@ -103,6 +104,8 @@ function App() {
                 user={user}
                 loadingFinished={loadingFinished}
                 currentUser={currentUser}
+                setUserInfo={setUserInfo}
+                userInfo={userInfo}
               />
             }
           />

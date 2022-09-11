@@ -149,28 +149,37 @@ const SearchBookCard = ({ currentUser, user }) => {
           getReviews={getReviews}
         />
       ) : null}
-      <div>
+      <div className="all-reviews">
         {reviews.map((review) => (
-          <div key={review.id}>
+          <div key={review.id} className="review">
             {review.User.id == user.id ? (
               <div>
                 {editing ? (
                   <UpdateReview review={review} edit={edit} />
                 ) : (
-                  <div>
+                  <div className="">
                     <div className="book-card-user">
                       <img src={review.User.image} />
                       <h3>{review.User.username}</h3>
+                      <button onClick={edit} className="edit">
+                        Edit
+                      </button>
                       <button onClick={unhid}>X</button>
-                      <button onClick={edit}>Edit</button>
                     </div>
-                    <h2 className="book-card-h2">{review.comment}</h2>
-                    <h3>{review.rating}</h3>
+                    <div className="text-review">
+                      <h2 className="book-card-h2">{review.comment}</h2>
+                      <h3>{review.rating}</h3>
+                    </div>
                     {hidden ? null : (
                       <div className="search-book-card-banner">
-                        <button onClick={unhid}>X</button>
+                        <button onClick={unhid} className="delete-btn">
+                          X
+                        </button>
                         <h3>Are you sure you want to delete your review?</h3>
-                        <button onClick={() => deleteReview(review.id)}>
+                        <button
+                          onClick={() => deleteReview(review.id)}
+                          className="delete-btn"
+                        >
                           Yes
                         </button>
                       </div>

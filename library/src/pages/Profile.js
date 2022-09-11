@@ -2,23 +2,13 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-const Profile = ({
-  loading,
-  user,
-  // following,
-  // followers,
-  // getFollowing,
-  // getFollowers,
-  currentUser
-  // loadingFinished
-}) => {
+const Profile = ({ loading, user, setUserInfo, userInfo, currentUser }) => {
   let navigate = useNavigate()
   const [libraries, setLibraries] = useState([])
   const [books, setBooks] = useState([])
   const [bookShow, setBookShow] = useState(false)
   const [bookUser, setBookUser] = useState({})
   const [followerLoading, setFollowerLoading] = useState(true)
-  const [userInfo, setUserInfo] = useState({})
   const [following, setFollowing] = useState('')
   const [followers, setFollowers] = useState('')
   let currentLibraries = []
@@ -105,7 +95,6 @@ const Profile = ({
       <div className="profile">
         <div className="profile-user">
           <img src={userInfo.image} />
-
           <div className="profile-user-follow">
             <h2>{userInfo.username}</h2>
             {/* {followerLoading ? ( */}
@@ -128,21 +117,23 @@ const Profile = ({
             </div>
           ))}
         </div>
-        {bookShow ? (
-          <div className="profile-books">
-            {books.map((book) => (
-              <div
-                key={book.id}
-                className="profile-books-book"
-                onClick={() => seeBook(book)}
-              >
-                <h3>{book.Book.title}</h3>
-                <h3>{book.Book.author}</h3>
-                <h4>{book.status}</h4>
-              </div>
-            ))}
-          </div>
-        ) : null}
+        <div>
+          {bookShow ? (
+            <div className="profile-books">
+              {books.map((book) => (
+                <div
+                  key={book.id}
+                  className="profile-books-book"
+                  onClick={() => seeBook(book)}
+                >
+                  <h3>{book.Book.title}</h3>
+                  <h3>{book.Book.author}</h3>
+                  <h4>{book.status}</h4>
+                </div>
+              ))}
+            </div>
+          ) : null}
+        </div>
       </div>
     )
   }

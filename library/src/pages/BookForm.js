@@ -69,15 +69,13 @@ const BookForm = ({ book, user }) => {
 
   return (
     <div>
-      <div>
-        <h2>Add to your library</h2>
+      <div className="create-book-card">
         <img src={initialState.image} />
         <h2>{initialState.title}</h2>
         <h3>{initialState.author}</h3>
       </div>
-      <div>
+      <div className="book-card-form">
         <form onSubmit={handleSubmit}>
-          <h3>Status:</h3>
           <select
             id="value"
             name="status"
@@ -85,7 +83,7 @@ const BookForm = ({ book, user }) => {
             value={userBook.status}
           >
             <option value="" disabled>
-              Select Status
+              Reading?
             </option>
             <option value="about to read">About to read</option>
             <option value="Reading">Reading</option>

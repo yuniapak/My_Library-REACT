@@ -59,11 +59,11 @@ const Search = ({ API_KEY }) => {
       />
       <div>
         {searched ? (
-          <div className="search-books">
+          <div className="search-elements">
             {books.map((book) => (
               <div
                 key={book.volumeInfo.authors}
-                className="search-book"
+                className="element"
                 onClick={() => seeBook(book)}
               >
                 <h2>{book.volumeInfo.title}</h2>

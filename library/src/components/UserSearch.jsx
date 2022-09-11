@@ -14,13 +14,13 @@ navigate(`user/${user.id}`, {state:{user:user}})
 
 return (
 <div>
-    <div  className="search">
+<div  className="search">
 <input type='text' name='search' value ={searchUserQuery} placeholder = 'Username' onChange={handleChange}></input>
 <button type='submit' onClick={findUser} className='search-btn'>Search</button>
 </div>
 <div className='search-elements'>
     { searchedUser.map((user)=>(
-        <div key={user.id} onClick={()=>seeUser(user)}>
+        <div key={user.id} onClick={()=>seeUser(user)} className='element'>
         <h2>{user.username}</h2>
         <img src={user.image}/>
         </div>

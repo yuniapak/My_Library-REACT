@@ -24,14 +24,14 @@ const handleSubmit =async(e)=>{
 }
 
     return <div>
-        <h2>Update review form</h2>
         <div>
             <div className="book-card-user">
             <img src={review.User.image} />
             <h3>{review.User.username}</h3>
             </div>
+            
             <form onSubmit={handleSubmit}>
-            <input className="book-card-h2"
+            <input className="review-input"
             name="comment"
             type="text"
             placeholder={review.comment}
@@ -40,6 +40,7 @@ const handleSubmit =async(e)=>{
             onChange={handleChange}
             required></input>
             <select 
+            className='edit-review-select'
             id="value"
             name="rating"
             defaultValue={review.rating}
@@ -53,8 +54,9 @@ const handleSubmit =async(e)=>{
             <option value="4">4</option>
             <option value="5">5</option>
             </select>
-            <button type="submit">Update</button>
+            <button type="submit" className='edit-review-btn'>Update</button>
             </form>
+            
         </div>
     </div>
  }

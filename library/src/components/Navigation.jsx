@@ -17,22 +17,26 @@ const Navigation = ({authenticated, user, handleLogOut})=>{
     if(user){
        authenticatedOption =(
         <div className="Nav">
-        <div className="nav-links">
+
+        <button className='nav-button'>Button</button>
+        <div className="dropdown">
         <NavLink to='/search'>Search</NavLink>
         <NavLink to='/profile'>Profile</NavLink>
-        </div>
-        {/* <div className="nav-column">
-        {/* <button onClick={changeStyle} className="nav-settings"><img src={SettingsImg}/></button>
-            { style == 'Nav-hidden' ? ( null) :
+        {/* <button onClick={changeStyle} className="nav-settings"><img src={SettingsImg}/></button> */}
+        <NavLink to='/settings' >Settings</NavLink>
+        <NavLink to ='/' onClick={handleLogOut} >LogOut</NavLink> 
+
+            {/* { style == 'Nav-hidden' ? (null) :
         ( <div className={style}> <NavLink to='/settings' >Settings</NavLink>
         <NavLink to ='/' onClick={handleLogOut} >LogOut</NavLink> </div>)} */}
-
     </div> 
+    </div>
         )
     }
     const publicOption = (
         <div className="Nav">
-        <div>
+            <button className='nav-button'>Button</button>
+        <div className="dropdown">
         <NavLink to='/signup'>SignUp</NavLink>
         <NavLink to='/login'>LogIn</NavLink>
         </div>
