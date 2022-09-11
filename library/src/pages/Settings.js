@@ -8,6 +8,7 @@ const Settings = ({ user, userInfo }) => {
     image: userInfo.image
   })
   console.log(userInfo)
+  console.log(user)
   const changePassword = () => {
     if (hid == true) {
       setHid(false)
@@ -70,7 +71,9 @@ const Settings = ({ user, userInfo }) => {
               type="text"
               placeholder="ImageURL"
               onChange={handleChange}
-              value=""
+              defaultValue=""
+              contentEditable="true"
+              required
             ></input>
             <h3>Username:</h3>
             <input

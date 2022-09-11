@@ -11,6 +11,8 @@ const UserPage = ({
   let navigate = useNavigate()
   let location = useLocation()
   const [libraries, setLibraries] = useState([])
+  const [books, setBooks] = useState([])
+  const [bookShow, setBookShow] = useState(false)
   const [follow, setFollow] = useState(false)
   const [loading, setLoading] = useState(true)
   let currentLibraries = []
@@ -34,12 +36,13 @@ const UserPage = ({
           initialState.id && result.data[0].userId == user.id)
       ) {
         setFollow(true)
+        setLoading(false)
       }
     } else {
       setFollow(false)
+      setLoading(false)
     }
-    console.log(result.data[0].userId)
-    setLoading(false)
+    // console.log(result.data[0].userId)
   }
 
   const followUser = async () => {
@@ -77,6 +80,14 @@ const UserPage = ({
     })
     setLibraries(currentLibraries)
   }
+  const getBooks = async (e) => {
+    const result = await axios.get(
+      `http://localhost:3001/api/book/library/${initialState.id}/${e.target.value}`
+    )
+    console.log(result.data)
+    setBooks(result.data)
+    setBookShow(true)
+  }
 
   useEffect(() => {
     followed()
@@ -109,9 +120,24 @@ const UserPage = ({
         <div className="library-card">
           {libraries.map((library) => (
             <div key={library}>
-              <button value={library}>{library}</button>
+              <button value={library} onClick={getBooks}>
+                {library}
+              </button>
             </div>
           ))}
+        </div>
+        <div>
+          {bookShow ? (
+            <div className="profile-books">
+              {books.map((book) => (
+                <div key={book.id} className="profile-books-book">
+                  <h3>{book.Book.title}</h3>
+                  <h3>{book.Book.author}</h3>
+                  <h4>{book.status}</h4>
+                </div>
+              ))}
+            </div>
+          ) : null}
         </div>
       </div>
     )

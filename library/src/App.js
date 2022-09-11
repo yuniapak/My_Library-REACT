@@ -94,7 +94,10 @@ function App() {
               />
             }
           />
-          <Route path="/settings" element={<Settings userInfo={userInfo} />} />
+          <Route
+            path="/settings"
+            element={<Settings userInfo={userInfo} user={user} />}
+          />
           <Route path="/signup" element={<Registration />} />
           <Route
             path="/profile"
