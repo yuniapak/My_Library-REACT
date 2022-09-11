@@ -138,7 +138,7 @@ const Settings = ({ user, userInfo }) => {
         </div>
       ) : (
         <div className="infoChange">
-          <h1>Profile Settings</h1>
+          <h1 onClick={changeInfo}>Profile Settings</h1>
           <form onSubmit={handleSubmit}>
             <div className="img-settings">
               <img src={userProfile.image} />

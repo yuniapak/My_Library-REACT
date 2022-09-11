@@ -2,8 +2,9 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import BookSearch from '../components/BookSearch'
 import UserSearch from '../components/UserSearch'
+import Recomend from '../components/Recomend'
 import { useNavigate } from 'react-router-dom'
-const Search = ({ API_KEY }) => {
+const Search = ({ API_KEY, user }) => {
   let navigate = useNavigate()
   const [searchQuery, setSearchQuery] = useState('')
   const [searchUserQuery, setSearchUserQuery] = useState('')
@@ -18,18 +19,6 @@ const Search = ({ API_KEY }) => {
     console.log(result.data.items)
     setBooks(result.data.items)
     setSearched(true)
-    //   let bookData = {
-    //       title: result.data.volumeInfo,
-    //       author: result.data.volumeInfo.authors,
-    //       about: result.data.volumeInfo.description,
-    //       image: result.data.volumeInfo.imageLinks.thumbnail
-    //   }
-    //   let createBook = await axios.post(`http://localhost:3001/api/book`, bookData)
-    // }
-    //   useEffect(() => {
-    //       findBooks()
-    //     },
-    //     [])
   }
   const findUser = async () => {
     const res = await axios.get(
@@ -57,6 +46,11 @@ const Search = ({ API_KEY }) => {
         findUser={findUser}
         searchedUser={searchedUser}
       />
+      {searched ? null : (
+        <div>
+          <Recomend user={user} API_KEY={API_KEY} seeBook={seeBook} />
+        </div>
+      )}
       <div>
         {searched ? (
           <div className="search-elements">
