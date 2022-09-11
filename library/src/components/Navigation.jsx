@@ -17,9 +17,10 @@ const Navigation = ({authenticated, user, handleLogOut})=>{
     if(user){
        authenticatedOption =(
         <div className="Nav">
-
         <button className='nav-button'>Button</button>
+        
         <div className="dropdown">
+        <NavLink to='#'></NavLink>
         <NavLink to='/search'>Search</NavLink>
         <NavLink to='/profile'>Profile</NavLink>
         {/* <button onClick={changeStyle} className="nav-settings"><img src={SettingsImg}/></button> */}

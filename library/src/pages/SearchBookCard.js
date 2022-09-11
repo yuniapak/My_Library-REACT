@@ -168,7 +168,7 @@ const SearchBookCard = ({ currentUser, user }) => {
                     </div>
                     <div className="text-review">
                       <h2 className="book-card-h2">{review.comment}</h2>
-                      <h3>{review.rating}</h3>
+                      <h3 className="book-card-h3">{review.rating}</h3>
                     </div>
                     {hidden ? null : (
                       <div className="search-book-card-banner">

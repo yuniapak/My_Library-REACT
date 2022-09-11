@@ -11,7 +11,6 @@ const UserPage = ({
   let navigate = useNavigate()
   let location = useLocation()
   const [libraries, setLibraries] = useState([])
-  // const [followingList, setFollowingList] = useState(false)
   const [follow, setFollow] = useState(false)
   const [loading, setLoading] = useState(true)
   let currentLibraries = []
@@ -28,27 +27,18 @@ const UserPage = ({
     const result = await axios.get(
       `http://localhost:3001/api/user/friendList/${user.id}/${initialState.id}`
     )
-    setFollow(result.data)
     console.log(result.data)
-    // console.log(result.data)
-    // console.log(user.id)
-    // console.log(parseInt(initialState.id))
-    // followingList.map((friendList) => {
-    //   console.log(friendList.userId)
-    // })
-    // followingList.map((friendList) => {
-    //   console.log(friendList.friendId)
-    // })
-    // followingList.map((friendList) => {
-    //   if (
-    //     friendList.userId === user.id &&
-    //     friendList.friendId === parseInt(initialState.id)
-    //   ) {
-    //     console.log('Alredy followed')
-    //     setFollow(true)
-    //     setLoading(false)
-    //   }
-    // })
+    if (result.data.length > 0) {
+      if (
+        (result.data[0].friendId =
+          initialState.id && result.data[0].userId == user.id)
+      ) {
+        setFollow(true)
+      }
+    } else {
+      setFollow(false)
+    }
+    console.log(result.data[0].userId)
     setLoading(false)
   }
 
@@ -61,6 +51,8 @@ const UserPage = ({
     navigate(`user/${initialState.id}`, {
       state: { user: initialState }
     })
+    getFollowing(initialState.id)
+    getFollowers(initialState.id)
   }
   //   unfollow searched user
   const unfollow = async () => {
@@ -72,6 +64,8 @@ const UserPage = ({
     navigate(`user/${initialState.id}`, {
       state: { user: initialState }
     })
+    getFollowing(initialState.id)
+    getFollowers(initialState.id)
   }
   const findLibraries = async () => {
     const result = await axios.get(

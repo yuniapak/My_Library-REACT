@@ -52,15 +52,17 @@ const BookCard = () => {
             <h3>{firstReview.rating}</h3>
           </div>
         )} */}
-        <div className="book-card-reviews">
+        <div className="all-reviews">
           {reviews.map((review) => (
-            <div key={review.id}>
+            <div key={review.id} className="review">
               <div className="book-card-user">
                 <img src={review.User.image} />
                 <h3>{review.User.username}</h3>
               </div>
-              <h2 className="book-card-h2">{review.comment}</h2>
-              <h3>{review.rating}</h3>
+              <div className="text-review">
+                <h2 className="book-card-h2">{review.comment}</h2>
+                <h3 className="book-card-h3">{review.rating}</h3>
+              </div>
             </div>
           ))}
         </div>

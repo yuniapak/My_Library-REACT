@@ -15,7 +15,7 @@ navigate(`user/${user.id}`, {state:{user:user}})
 return (
 <div>
 <div  className="search">
-<input type='text' name='search' value ={searchUserQuery} placeholder = 'Username' onChange={handleChange}></input>
+<input type='text' name='search' value ={searchUserQuery} placeholder = 'Username' onChange={handleChange} className='search-input'></input>
 <button type='submit' onClick={findUser} className='search-btn'>Search</button>
 </div>
 <div className='search-elements'>

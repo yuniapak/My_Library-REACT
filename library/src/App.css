@@ -378,13 +378,17 @@ a:visited{
   .search{
     margin-left: auto;
     margin-right: auto;
-    width:50%;
+    max-width:50%;
+    display: flex;
+    flex-direction:row;
   }
+
   .search button{
     padding:10px;
   }
-  .search input{
-    padding:10px;
+  .search-input{
+    padding:2px;
+    
   }
   .search-book-card-banner{
     position:fixed;
@@ -457,7 +461,11 @@ a:visited{
   .settings{
     text-align: center;
   }
+  .settings h1{
+    font-size: 20px;
+  }
   .passwordChange{
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.3);
     margin-top:15px;
     background-color: #cbcbcb;
     width:80%;
@@ -467,9 +475,11 @@ a:visited{
     border-radius: 5px;
   }
   .passwordChange h1{
-    font-size:27px;
+    font-size: 18px;
+    color:#373737
   }
   .infoChange{
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.3);
     margin-top:15px;
     background-color: #cbcbcb;
     width:80%;
@@ -479,7 +489,8 @@ a:visited{
     border-radius: 5px;
   }
   .infoChange h1{
-    font-size: 27px;
+    font-size: 18px;
+    color:#373737
   }
   .infoChange input{
     background-color: #e8e8e8;
