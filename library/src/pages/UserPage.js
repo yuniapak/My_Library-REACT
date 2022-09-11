@@ -88,6 +88,10 @@ const UserPage = ({
     setBooks(result.data)
     setBookShow(true)
   }
+  const seeBook = (book) => {
+    console.log(book)
+    navigate(`book/${book.id}`, { state: { book: book } })
+  }
 
   useEffect(() => {
     followed()
@@ -130,7 +134,11 @@ const UserPage = ({
           {bookShow ? (
             <div className="profile-books">
               {books.map((book) => (
-                <div key={book.id} className="profile-books-book">
+                <div
+                  key={book.id}
+                  className="profile-books-book"
+                  onClick={() => seeBook(book)}
+                >
                   <h3>{book.Book.title}</h3>
                   <h3>{book.Book.author}</h3>
                   <h4>{book.status}</h4>

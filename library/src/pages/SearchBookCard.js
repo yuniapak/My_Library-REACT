@@ -143,10 +143,10 @@ const SearchBookCard = ({ currentUser, user }) => {
       {reviewCard ? (
         <CreateReview
           bookId={bookId}
-          currentUser={currentUser}
           initialState={initialState}
           user={user}
           getReviews={getReviews}
+          showReviewCard={showReviewCard}
         />
       ) : null}
       <div className="all-reviews">

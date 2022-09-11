@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
-const CreateReview = ({currentUser, bookId, initialState, user, getReviews})=>{
+const CreateReview = ({bookId, initialState, user, getReviews, showReviewCard})=>{
     let navigate = useNavigate()
     const [review, setReview] = useState({
         userId: user.id,
@@ -62,9 +62,9 @@ const CreateReview = ({currentUser, bookId, initialState, user, getReviews})=>{
             <option value="4">4</option>
             <option value="5">5</option>
           </select>
-          </div>
-          <div >
-            <button type="submit" className='review-btn'>Send</button>
+
+
+            <button type="submit" className='review-btn' onClick={showReviewCard}>Send</button>
             </div>
         </form>
     </div>

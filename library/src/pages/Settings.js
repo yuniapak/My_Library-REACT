@@ -7,8 +7,14 @@ const Settings = ({ user, userInfo }) => {
     username: userInfo.username,
     image: userInfo.image
   })
+  const [passwordForm, setPasswordForm] = useState({
+    password: '',
+    newPassword: '',
+    confirmPassword: ''
+  })
   console.log(userInfo)
   console.log(user)
+
   const changePassword = () => {
     if (hid == true) {
       setHid(false)
@@ -22,6 +28,34 @@ const Settings = ({ user, userInfo }) => {
     } else {
       setHidEdit(true)
     }
+  }
+  const updatePassword = async (form) => {
+    try {
+      const res = await axios.put(
+        `http://localhost:3001/api/auth/update/${user.id}`,
+        form
+      )
+      console.log(res)
+    } catch (error) {
+      throw error
+    }
+  }
+
+  const handleChangePassword = (event) => {
+    setPasswordForm({
+      ...passwordForm,
+      [event.target.name]: event.target.value
+    })
+    console.log(passwordForm)
+  }
+
+  const handleSubmitPassword = async (e) => {
+    e.preventDefault()
+    updatePassword({
+      password: passwordForm.password,
+      newPassword: passwordForm.newPassword
+    })
+    setPasswordForm({ password: '', newPassword: '', confirmPassword: '' })
   }
   const changeUserInfo = async (info) => {
     const result = await axios.put(
@@ -54,8 +88,50 @@ const Settings = ({ user, userInfo }) => {
       ) : (
         <div className="passwordChange">
           <h1 onClick={changePassword}>Update Password</h1>
+          <form onSubmit={handleSubmitPassword}>
+            <input
+              name="password"
+              type="password"
+              placeholder="Current Password"
+              value={passwordForm.password}
+              contentEditable="true"
+              onChange={handleChangePassword}
+              required
+            ></input>
+            <input
+              name="newPassword"
+              type="password"
+              placeholder="New Password"
+              value={passwordForm.newPassword}
+              contentEditable="true"
+              onChange={handleChangePassword}
+              required
+            ></input>
+            <label htmlFor="password"></label>
+            <input
+              name="confirmPassword"
+              type="password"
+              placeholder="Confirm Password"
+              value={passwordForm.confirmPassword}
+              contentEditable="true"
+              onChange={handleChangePassword}
+              required
+            ></input>
+            <button
+              type="submit"
+              disabled={
+                !passwordForm.password ||
+                (!passwordForm.newPassword &&
+                  passwordForm.confirmPassword === passwordForm.newPassword)
+              }
+              onClick={changePassword}
+            >
+              Change Password
+            </button>
+          </form>
         </div>
       )}
+
       {hidEdit ? (
         <div className="infoChange">
           <h1 onClick={changeInfo}>Profile Settings</h1>
@@ -64,17 +140,18 @@ const Settings = ({ user, userInfo }) => {
         <div className="infoChange">
           <h1>Profile Settings</h1>
           <form onSubmit={handleSubmit}>
-            <img src={userInfo.image} />
-            {/* {image.value !== '' ? <img src="#" /> : null} */}
-            <input
-              name="image"
-              type="text"
-              placeholder="ImageURL"
-              onChange={handleChange}
-              defaultValue=""
-              contentEditable="true"
-              required
-            ></input>
+            <div className="img-settings">
+              <img src={userProfile.image} />
+              <input
+                name="image"
+                type="text"
+                placeholder="ImageURL"
+                onChange={handleChange}
+                defaultValue=""
+                contentEditable="true"
+                required
+              ></input>
+            </div>
             <h3>Username:</h3>
             <input
               name="username"

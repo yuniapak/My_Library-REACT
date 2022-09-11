@@ -49,6 +49,7 @@ const Profile = ({ loading, user, setUserInfo, userInfo, currentUser }) => {
   }
 
   const seeBook = (book) => {
+    console.log(book)
     navigate(`book/${book.id}`, { state: { book: book } })
   }
 

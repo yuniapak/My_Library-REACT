@@ -29,20 +29,21 @@ a{
 button{
   border: none;
   font-family: 'Courier Prime', monospace;
-  padding:5px;
+  padding:15px;
   background-color: white;
   border-radius:5px;
   margin:8px;
 } 
 
+/*Nav-bar*/
 button:disabled{
   border: none;
   font-family: 'Courier Prime', monospace;
-  padding:9px;
+  padding:15px;
   background-color: grey;
 } 
 img{
-  width: 70%;
+  width: 60%;
   border-radius: 20px;
 }
 .Nav{
@@ -50,7 +51,7 @@ img{
 }
 .Nav a{
   font-size: 16px;
-  color: white;
+  color: rgb(80, 80, 80);
   text-align: center;
   padding: 14px 16px;
   display: block;
@@ -66,8 +67,13 @@ img{
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+  border-radius: 8px;
+}
+.dropdown a:hover{
+  background-color: rgba(190, 190, 190, 0.8);
 }
 .nav-button {
+  position:fixed;
   font-size: 16px;
   border: none;
   outline: none;
@@ -75,7 +81,7 @@ img{
   padding: 14px 16px;
   background-color: inherit;
   font-family: inherit; 
-  margin: 0; 
+  margin-top: 0px; 
 }
 .nav-button:hover{
   color:red
@@ -88,22 +94,77 @@ img{
 }
 a{
   text-decoration:none;
-  color:  rgb(239, 239, 239);
+  /* color:  rgb(239, 239, 239); */
 }
 a:visited{
   text-decoration:none;
-  color: rgb(239, 239, 239);
+  /* color: rgb(239, 239, 239); */
 } 
-/* Profile */
+/* ----------LOGIN---SIGNIN------- */
+.signin-form{
+  margin: auto;
+  margin-top:50px;
+  text-align: center;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+  background-color: rgb(98, 98, 98);
+  border-radius: 8px;
+  max-width: 50%;
+}
+.signin-form label{
+padding:10px;
+margin:5px;
+font-size: 16px;
+color:rgb(207, 207, 207);
+
+overflow: hidden;
+white-space: nowrap;
+}
+.signin-form input{
+  padding:8px;
+  font-size: 17px;
+}
+.submit-btn{
+  font-size: 14px;
+  padding: 10px;
+}
+.login{
+  margin-top:100px;
+
+}
+.login-form{
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+  background-color: rgb(98, 98, 98);
+  border-radius: 8px;
+  margin: auto;
+  max-width: 50%;
+  text-align: center;
+}
+.login-form label{
+  padding:10px;
+  margin:5px;
+  font-size: 16px;
+  color:rgb(207, 207, 207);
+  overflow: hidden;
+  white-space: nowrap;
+}
+.login-form input{
+  padding:8px;
+  font-size: 17px;
+}
+.login-form button{
+  margin-top:15px;
+}
+/*---------PROFILE-------*/
 .profile-user{
   display: flex;
   padding: 5px;
   background-color: whitesmoke;
-  width: 90%;
+  margin: auto;
+  max-width: 70%;
   border-radius: 20px;
 }
 .profile-user img{
-  width: 20%;
+  max-width: 17%;
   height: 20%;
   border-radius: 20px;
   vertical-align: bottom;
@@ -111,6 +172,7 @@ a:visited{
   padding:10px;
 }
 .profile-user h2{
+  color: #373737;
   padding: 10px;
   top:20px;
   margin-top: -5%;
@@ -118,28 +180,306 @@ a:visited{
 .profile-user-follow-tag{
   margin-left: auto;
   margin-right: auto;
+
 }
 .profile-user-follow{
-  padding: 5px;
+  padding: 15px;
 }
+
 .profile-books{
+  max-width: 80%;
   display: flex;
   flex-direction: row;
-  align-items: baseline;
-  text-align: center;
+  justify-content: center;
+  flex-wrap:wrap;
+  margin:auto;
 }
 .profile-books-book{
   margin:15px;
   background-color: whitesmoke;
   min-height:150px;
   text-align: center;
+  padding:10px;
+  border-radius: 8px;
+}
+.search{
+  margin-left: auto;
+  margin-right: auto;
+  max-width:30%;
+  align-items: center;
+  display: flex;
+  flex-direction:row;
+}
+
+.search button{
+  padding:10px;
+}
+.search-input{
+  padding:10px;
+  
+}
+.search-book-card-banner{
+  position:fixed;
+  width:80%;
+  background: rgb(255, 255, 255);
+  border: solid rgb(255, 255, 255) ;
+  border-radius: 8px;
+  top: 30%;
+  right: 10%;
+  padding:5px;
+  text-align: center;
+}
+.search-elements{
+  max-width: 80%;
+  margin:auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap:wrap;
+  justify-content: center;
+}
+.search-elements img{
+width:25%;
+}
+.element{
+  text-align: center;
+  flex-grow:1;
+  margin:8px;
+  width:30%;
+  background-color: #cbcbcb;
+  border-radius: 6px;
+}
+.element h2{
+  font-size: 16px;
+  color: black;
+}
+.book-card{
+  margin:auto;
+  width:90%;
+  text-align: center;
+}
+.book-card img{
+   max-width:20%;
+}
+.book-card p{
+  margin:auto;
+  max-width:70%;
+  font-size: 16px;
+  background-color: rgb(203, 203, 203);
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 30px 40px rgba(197, 197, 197, 0.3)
+}
+.book-card h3, h2{
+  color:rgb(220, 220, 220);
+}
+.book-card button{
+  padding:10px;
+}
+.all-reviews{
+  display: flex;
+  flex-direction: column-reverse;
+  flex-wrap:wrap;
+  max-width: 100%;
+  margin: auto;
+}
+.book-card-user{
+  display: flex;
+  flex-direction:row;
+  max-width:150%; 
+  text-align: center;
+}
+.book-card-user button{
+height: 5%;
+padding: 13px;
+}
+.book-card-user img{
+  padding: 20px;
+  max-width: 10%;
+  border:none;
+  border-radius: 30px;
+}
+.book-card-user h3{
+  padding-right: 26px;
+}
+.library-card{
+  display: flex;
+  flex-direction: row;
+  flex-wrap:wrap;
+  justify-content: center;
+}
+.library-card button{
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+}
+
+/*------Reviews-----*/
+.edit{
+  text-align: center;
+}
+.text-review{
+  text-align: left;
+  padding-left:30px;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 10px;
+  border-bottom: 1px;
+  border-radius: 8px;
+}
+.book-card-h2{
+  color:black;
+}
+.review{
+  flex-grow:1;
+  max-width:40%;
+  height: auto;
+  background:rgba(232, 232, 232, 0.8);
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 8px;
+  margin-top:30px;
+  text-align: center;
+}
+.review img{
+  width:30%;
+}
+.review-input{
+  background-color: #f9f9f9;
+  padding: 20px;
+  margin:14px;
+}
+.review-select{
+  padding:10px;
+  font-family: 'Courier Prime', monospace;
+  border: none;
+  border-radius: 8px;
+}
+.review-btn{
+  padding:10px;
+  background-color: #f9f9f9;
+}
+.create-book-card{
+  display: flex;
+  flex-direction:column;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  width:80%;
+}
+.create-book-card img{
+  margin-top: 20px;
+  max-width:20%;
+}
+.create-book-card h2{
+  color:#f8f8f8
+}
+.create-book-card h3{
+  color:#f8f8f8
+}
+.book-card-form{
+  display: flex;
+  flex-direction:column;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  width:80%;
+  text-align: center;
+}
+.book-card-form select{
+  padding:8px;
+  font-size: medium;
+  font-family: 'Courier Prime', monospace;
+  border: none;
+  border-radius: 8px;
+}
+.book-card-form input{
+  padding:9px;
+  font-size: medium;
+  font-family: 'Courier Prime', monospace;
+  border: none;
+  background-color: #e9e9e9;
+  border-radius: 8px;
+}
+.book-card-form button{
+  padding:10px;
+  font-size: 15px;
+}
+/*-------SETTINGS--------*/
+.settings{
+  text-align: center;
+}
+.settings h1{
+  font-size: 20px;
+}
+.passwordChange{
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.3);
+  margin-top:15px;
+  background-color: #cbcbcb;
+  width:80%;
+  margin-left: auto;
+  margin-right: auto;
+  padding:10px;
+  border-radius: 5px;
+}
+.passwordChange h1{
+  font-size: 18px;
+  color:#373737
+}
+.infoChange{
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.3);
+  margin-top:15px;
+  background-color: #cbcbcb;
+  width:80%;
+  margin-left: auto;
+  margin-right: auto;
+  padding:10px;
+  border-radius: 5px;
+}
+.infoChange h1{
+  font-size: 18px;
+  color:#373737
+}
+.infoChange img{
+  max-width:30%;
+  margin:10px;
+}
+.img-settings{
+  display: flex;
+  flex-direction:column;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  width:80%;
+}
+.infoChange input{
+  margin:10px;
+  background-color: #e8e8e8;
+}
+.infoChange button{
+  padding:10px
+}
+.passwordChange{
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.3);
+  margin-top:15px;
+  background-color: #cbcbcb;
+  width:80%;
+  margin-left: auto;
+  margin-right: auto;
+  padding:10px;
+  border-radius: 5px;
+}
+.passwordChange input{
+  background-color: #e8e8e8;
+  padding:10px;
+  margin:5px;
+}
+.passwordChange button{
+  padding:10px;
 }
 
 @media only screen and (max-width: 850px) {
   button{
     border: none;
     font-family: 'Courier Prime', monospace;
-    padding:5px;
+    padding:10px;
     background-color: white;
     border-radius:5px;
     margin:8px;
@@ -218,6 +558,7 @@ a:visited{
     margin-left: 30%;
     margin-right: 10%;
     font-size: 14px;
+    padding: 10px;
   }
   .login-form{
     margin: auto;
@@ -232,7 +573,7 @@ a:visited{
     white-space: nowrap;
   }
   .login-form input{
-    padding:5px;
+    padding:8px;
     font-size: 17px;
   }
   .login-form button{
@@ -271,15 +612,7 @@ a:visited{
   .profile-user h3{
     color:black;
   }
-  .search-elements{
-    display: flex;
-    flex-direction: row;
-    flex-wrap:wrap;
-    justify-content: center;
-  }
-  .search-elements img{
-  width:25%;
-  }
+
   .element{
     text-align: center;
     flex-grow:1;
@@ -307,6 +640,9 @@ a:visited{
   .book-card h3, h2{
     color:rgb(220, 220, 220);
   }
+  .book-card button{
+    padding:10px;
+  }
   .all-reviews{
     display: flex;
     flex-direction: column-reverse;
@@ -328,20 +664,18 @@ a:visited{
   .book-card-user{
     display: flex;
     flex-direction:row;
-    /* margin-left: auto;
-    margin-right: auto; */
     width:80%;
     text-align: center;
   }
   .book-card-user button{
   height: 5%;
+  padding: 13px;
   }
-  .book-card-user img, button{
+  .book-card-user img{
     padding: 20px;
   }
   .book-card-user h3{
     padding-right: 26px;
-
   }
   .edit{
     text-align: center;
@@ -382,12 +716,20 @@ a:visited{
     display: flex;
     flex-direction:row;
   }
-
+  .search-elements{
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    justify-content: center;
+  }
+  .search-elements img{
+  width:25%;
+  }
   .search button{
     padding:10px;
   }
   .search-input{
-    padding:2px;
+    padding:10px;
     
   }
   .search-book-card-banner{
@@ -427,7 +769,10 @@ a:visited{
     width:80%;
 
   }
-  .create-book-card h2,h3{
+  .create-book-card h2{
+    color:#f8f8f8
+  }
+  .create-book-card h3{
     color:#f8f8f8
   }
   .book-card-form{
@@ -492,271 +837,31 @@ a:visited{
     font-size: 18px;
     color:#373737
   }
+  .infoChange img{
+    max-width: 60%;
+  }
   .infoChange input{
     background-color: #e8e8e8;
   }
   .infoChange button{
     padding:10px
   }
-/* body{
-    width:100%;
-    background-color:rgb(71, 71, 71);
+  .passwordChange{
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.3);
+    margin-top:15px;
+    background-color: #cbcbcb;
+    width:80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding:10px;
+    border-radius: 5px;
   }
-button{
-  border: 10px white;
-  padding: 8px;
-  border-radius: 10px;
-  font-family: 'Courier Prime', monospace;
-
-}
-h2{
-  font-size: 20px;
-}
-h3{
-  font-size:16px;
-}
-.Nav{
-max-width:100%;
-padding:20px;
-display:inline-flex;
-border-bottom: solid 3px rgb(32, 32, 32);
-margin:5px;
-}
-.Nav a{
-  padding: 10px;
-} 
-.Nav-hidden{
-  height: 0;
-  width: fit-content;
-  animation: 2s fadeMe;
-  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2);
-  margin-top: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  opacity:0;
-  z-index:10;
-}
-.Nav-unhidden{
-  height: 0;
-  width: fit-content;
-  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2);
-  margin-top: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  z-index:10;
-}
-.Nav-hidden a {
-  padding: 12px 24px;
-  margin: 0 16px;
-  color: whitesmoke;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
-  background-color: rgba(245,245,245,0.3);
-  text-decoration: none;
-  text-align: center;
-  transition: filter 200ms linear 0s;
-} 
-.nav-column{
-  flex-direction:column;
-}
-.nav-settings{
-  background-color: rgb(71, 71, 71);
-  margin-left: 50%;
-  border: none;
-  border-radius: none;
-  margin-top: -20px;
-}
-.nav-settings img{
-  width: 50%;
-
-}
-.Nav-unhidden a {
-  padding: 12px 24px;
-  margin: 0 16px;
-  color: rgb(79, 79, 79);
-  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
-  background-color: rgba(245,245,245,0.6);
-  text-decoration: none;
-  text-align: center;
-  transition: filter 200ms linear 0s;
-} 
-
-/* .Nav-hidden a:hover {
-  filter: brightness(200%);
-} 
-@keyframes menuAnim {
-  0% {
-    height: 0;
-  }
-  100% {
-    height: 312px;
-  }
-}
-@keyframes fadeMe {
-  0% {
-    opacity: 1;
-  }
-  99% {
-    opacity: 0;
-  }
-  100%{
-    overflow: hidden;
-  }
-} 
-
-
-  .profile-user{
-    display: flex;
-    align-items: flex-start;
-    padding: 10px;
-    background-color: whitesmoke;
-    width: 95%;
-    border-radius: 20px;
-    margin-bottom: 10px;
-  }
-  .profile button{
-    background-color: whitesmoke;
-    padding: 8px;
+  .passwordChange input{
+    background-color: #e8e8e8;
+    padding:10px;
     margin:5px;
   }
-  .profile-user img{
-    max-width: 70px;
-    border-radius: 20px;
-    vertical-align: bottom;
-    display:inline;
-    padding:10px;
-    height: 100%;
-  }
-  .profile-user h2{
-    font-family: 'Courier Prime', monospace;
-    padding:0;
-    margin:0;
-    top:20px;
-    min-height:100%;
-    margin-bottom: 0px;
-  }
-  .profile-user-follow{
-    text-align: left;
-    margin-left: 15px;
-    padding:5px;
-  }
-  .profile-user-follow-tag{
-    margin-top: -65%;
-  }
-  .profile-user-follow-tag h3{
-    font-size: 13px;
-  }
-  .library-card{
-    display:inline-flex;
-    border: white none ;
-  }
-  .library-card button{
-    padding:8px;
-    border-radius: 5px;
-    box-shadow: 2px 10px 20px rgba(206, 206, 206, 0.4);
-    font-family: 'Courier Prime', monospace;
-  }
-  .profile-books-book{
-    margin:15px;
-    padding: 10px;
-    background-color: whitesmoke;
-    border-radius: 20px;
-    min-height:150px;
-    text-align: center;
-  }
-
-   /* Search Page */
-   /*
-  .search{
-    display: flex;
-    align-items: flex-start;
-    margin:10px;
-  }
-  .search input{
-    margin-right:10px;
-    border-radius: 20px;
-    border: solid white 8px;
-    font-family: 'Courier Prime', monospace;
-  }
-  .search-books{
-    display: grid;
-    max-width: 100%;
-    grid-template-columns: auto auto auto;
-    background-color: whitesmoke;
-    gap: 10px 20px;
-    align-items: center;
-  }
-  .search-book{
-  align-items: center;
-
-  }
-  .search-book h2{
-    font-size: 10px;
-  }
-  /*BookCard*/
-/*
-  .book-card{
-    background-color: whitesmoke;
-    padding:10px;
-    align-items: center;
-  }
-  .book-card-user{
-    margin-top:10px;
-    display: flex;
-    padding: 10px;
-    background-color: whitesmoke;
-    width: 90%;
-    border-radius: 10px;
-  }
-  .book-card-user img{
-  margin-right: 20px; 
-  }
-  .book-card-h2{
-    padding: 10px;
-    font-size: 16px;
-    width: 90%;
-  }
-  .book-card-first-review{
-    padding:20px;
-    align-items: center;
-  }
-  .search-book-card-banner{
-    position:fixed;
-    width:80%;
-    background: grey;
-    border: solid grey ;
-    border-radius: 8px;
-    top: 50%;
-    right: 10%;
-    padding:5px;
-  }
-  .search-book-card-banner h3{
-    text-align: center;
-    margin:10px;
-    padding:10px;
-    width:80%;
-  }
-  .book-card-reviews{
-
-  } 
-  .create-review-form{
-    display: flex;
-    align-items: flex-start;
-    background:whitesmoke;
+  .passwordChange button{
     padding:10px;
   }
-  .create-review-form select{
-    padding: 3px;
-    margin-left:7px;
-    font-family: 'Courier Prime', monospace;
-  }
-  .review-btn{
-    background:whitesmoke;
-  }
-  .review-btn button{
-    align-self:
-  } */
-
-
 } 
