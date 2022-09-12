@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import {useState} from 'react'
-import SettingsImg from "../img/settingIcon.png"
+import Menu from "../img/menu3.png"
 const Navigation = ({authenticated, user, handleLogOut})=>{
     const [style, setStyle] = useState('Nav-hidden')
     
@@ -9,7 +9,7 @@ const Navigation = ({authenticated, user, handleLogOut})=>{
     if(user){
        authenticatedOption =(
         <div className="Nav">
-        <button className='nav-button'>Button</button>
+        <button className='nav-button'><img src={Menu}/></button>
         
         <div className="dropdown">
         <NavLink to='#'></NavLink>
@@ -23,7 +23,7 @@ const Navigation = ({authenticated, user, handleLogOut})=>{
     }
     const publicOption = (
         <div className="Nav">
-            <button className='nav-button'>Button</button>
+            <button className='nav-button'><img src={Menu}/></button>
         <div className="dropdown">
         <NavLink to='/signup'>SignUp</NavLink>
         <NavLink to='/login'>LogIn</NavLink>

@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import UpdateReview from '../components/UpdateReview.jsx'
 import CreateReview from '../components/CreateReview.jsx'
-const SearchBookCard = ({ currentUser, user }) => {
+const SearchBookCard = ({ currentUser, user, authenticated }) => {
   // const [book, setBook] = useState({})
   const [reviews, setReviews] = useState([])
   const [library, setLibrary] = useState('')
@@ -120,89 +120,119 @@ const SearchBookCard = ({ currentUser, user }) => {
     getReviews(initialState.title)
   }, [])
 
-  return (
+  let authenticatedOption
+
+  if (user) {
+    authenticatedOption = (
+      <div>
+        <div className="book-card">
+          <h2>{initialState.title}</h2>
+          <h3>{initialState.author}</h3>
+          <img src={initialState.image} />
+          <div>
+            {inLibrary ? (
+              <h3>In {library}</h3>
+            ) : (
+              <button
+                onClick={() => {
+                  addBook(initialState)
+                }}
+              >
+                Add to Library
+              </button>
+            )}
+            <button onClick={showReviewCard}>Review</button>
+          </div>
+          {initialState.about == 'undefined' ? null : (
+            <p>{initialState.about}</p>
+          )}
+        </div>
+        {reviewCard ? (
+          <CreateReview
+            bookId={bookId}
+            initialState={initialState}
+            user={user}
+            getReviews={getReviews}
+            showReviewCard={showReviewCard}
+          />
+        ) : null}
+        <div className="all-reviews">
+          {reviews.map((review) => (
+            <div key={review.id} className="review">
+              {review.User.id == user.id ? (
+                <div>
+                  {editing ? (
+                    <UpdateReview review={review} edit={edit} />
+                  ) : (
+                    <div className="">
+                      <div className="book-card-user">
+                        <img src={review.User.image} />
+                        <h3>{review.User.username}</h3>
+                        <button onClick={edit} className="edit">
+                          Edit
+                        </button>
+                        <button onClick={unhid}>X</button>
+                      </div>
+                      <div className="text-review">
+                        <h2 className="book-card-h2">{review.comment}</h2>
+                        <h3 className="book-card-h3">{review.rating}</h3>
+                      </div>
+                      {hidden ? null : (
+                        <div className="search-book-card-banner">
+                          <button onClick={unhid} className="delete-btn">
+                            X
+                          </button>
+                          <h3>Are you sure you want to delete your review?</h3>
+                          <button
+                            onClick={() => deleteReview(review.id)}
+                            className="delete-btn"
+                          >
+                            Yes
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div>
+                  <div className="book-card-user">
+                    <img src={review.User.image} />
+                    <h3>{review.User.username}</h3>
+                  </div>
+                  <h2 className="book-card-h2">{review.comment}</h2>
+                  <h3>{review.rating}</h3>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  const publicOption = (
     <div>
       <div className="book-card">
         <h2>{initialState.title}</h2>
         <h3>{initialState.author}</h3>
         <img src={initialState.image} />
-        <div>
-          {inLibrary ? (
-            <h3>In {library}</h3>
-          ) : (
-            <button
-              onClick={() => {
-                addBook(initialState)
-              }}
-            >
-              Add to Library
-            </button>
-          )}
-          <button onClick={showReviewCard}>Review</button>
-        </div>
         {initialState.about == 'undefined' ? null : <p>{initialState.about}</p>}
-      </div>
-      {reviewCard ? (
-        <CreateReview
-          bookId={bookId}
-          initialState={initialState}
-          user={user}
-          getReviews={getReviews}
-          showReviewCard={showReviewCard}
-        />
-      ) : null}
-      <div className="all-reviews">
-        {reviews.map((review) => (
-          <div key={review.id} className="review">
-            {review.User.id == user.id ? (
-              <div>
-                {editing ? (
-                  <UpdateReview review={review} edit={edit} />
-                ) : (
-                  <div className="">
-                    <div className="book-card-user">
-                      <img src={review.User.image} />
-                      <h3>{review.User.username}</h3>
-                      <button onClick={edit} className="edit">
-                        Edit
-                      </button>
-                      <button onClick={unhid}>X</button>
-                    </div>
-                    <div className="text-review">
-                      <h2 className="book-card-h2">{review.comment}</h2>
-                      <h3 className="book-card-h3">{review.rating}</h3>
-                    </div>
-                    {hidden ? null : (
-                      <div className="search-book-card-banner">
-                        <button onClick={unhid} className="delete-btn">
-                          X
-                        </button>
-                        <h3>Are you sure you want to delete your review?</h3>
-                        <button
-                          onClick={() => deleteReview(review.id)}
-                          className="delete-btn"
-                        >
-                          Yes
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                )}
+        <div className="all-reviews">
+          {reviews.map((review) => (
+            <div key={review.id} className="review">
+              <div className="book-card-user">
+                <img src={review.User.image} />
+                <h3>{review.User.username}</h3>
               </div>
-            ) : (
-              <div>
-                <div className="book-card-user">
-                  <img src={review.User.image} />
-                  <h3>{review.User.username}</h3>
-                </div>
-                <h2 className="book-card-h2">{review.comment}</h2>
-                <h3>{review.rating}</h3>
-              </div>
-            )}
-          </div>
-        ))}
+              <h2 className="book-card-h2">{review.comment}</h2>
+              <h3>{review.rating}</h3>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )
+  return <div>{authenticated && user ? authenticatedOption : publicOption}</div>
 }
 export default SearchBookCard

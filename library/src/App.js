@@ -34,15 +34,15 @@ function App() {
   const checkToken = async () => {
     const user = await CheckSession()
     setUser(user)
-    console.log(user)
+
     toggleAuthenticated(true)
-    console.log('authenticated!')
+
     setLoading(false)
   }
 
   useEffect(() => {
     const token = localStorage.getItem('token')
-    console.log(token)
+
     if (token) {
       checkToken()
     }
@@ -126,12 +126,24 @@ function App() {
           />
           <Route
             path="/search"
-            element={<Search API_KEY={API_KEY} user={user} />}
+            element={
+              <Search
+                API_KEY={API_KEY}
+                user={user}
+                authenticated={authenticated}
+              />
+            }
           />
           <Route path="profile/book/*" element={<BookCard user={user} />} />
           <Route
             path="/search/book/*"
-            element={<SearchBookCard currentUser={currentUser} user={user} />}
+            element={
+              <SearchBookCard
+                currentUser={currentUser}
+                user={user}
+                authenticated={authenticated}
+              />
+            }
           />
           <Route
             path="/search/user/book/*"

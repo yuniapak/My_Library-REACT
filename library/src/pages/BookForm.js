@@ -89,7 +89,7 @@ const BookForm = ({ book, user }) => {
             <option value="Reading">Reading</option>
             <option value="Read">Read</option>
           </select>
-          <h3>Choose Library:</h3>
+          <h3> </h3>
           <input
             maxLength="100"
             onChange={handleChange}
