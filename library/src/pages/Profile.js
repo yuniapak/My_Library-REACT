@@ -11,6 +11,7 @@ const Profile = ({ loading, user, setUserInfo, userInfo, currentUser }) => {
   const [followerLoading, setFollowerLoading] = useState(true)
   const [following, setFollowing] = useState('')
   const [followers, setFollowers] = useState('')
+  const [classN, setClassN] = useState('get-libraries')
   let currentLibraries = []
   console.log(currentUser)
   // console.log(bookUser)
@@ -25,6 +26,7 @@ const Profile = ({ loading, user, setUserInfo, userInfo, currentUser }) => {
       })
       console.log([...new Set(currentLibraries)])
       setLibraries([...new Set(currentLibraries)])
+      setClassN('get-libraries-clicked')
     } catch (error) {
       return error
     }
@@ -108,7 +110,9 @@ const Profile = ({ loading, user, setUserInfo, userInfo, currentUser }) => {
             )} */}
           </div>
         </div>
-        <button onClick={getLibraries}>See Libraries</button>
+        <h3 onClick={getLibraries} className={classN}>
+          Libraries
+        </h3>
         <div className="library-card">
           {libraries.map((library) => (
             <div key={library}>

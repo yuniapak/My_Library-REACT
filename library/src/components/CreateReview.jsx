@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
-const CreateReview = ({bookId, initialState, user, getReviews, showReviewCard})=>{
+const CreateReview = ({bookId, initialState, user, getReviews, showReviewCard, setReviewCard})=>{
     let navigate = useNavigate()
     const [review, setReview] = useState({
         userId: user.id,
@@ -30,6 +30,7 @@ const CreateReview = ({bookId, initialState, user, getReviews, showReviewCard})=
         })
         console.log('Review created')
         getReviews(initialState.title)
+        setReviewCard(false)
         // navigate(`/search/book/${initialState.id}`,{
         //     state: { book: initialState }})
       }
@@ -62,8 +63,6 @@ const CreateReview = ({bookId, initialState, user, getReviews, showReviewCard})=
             <option value="4">4</option>
             <option value="5">5</option>
           </select>
-
-
             <button type="submit" className='review-btn' onClick={showReviewCard}>Send</button>
             </div>
         </form>

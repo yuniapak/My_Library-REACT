@@ -104,6 +104,8 @@ const SearchBookCard = ({ currentUser, user }) => {
   }
   const deleteReview = async (id) => {
     await axios.delete(`http://localhost:3001/api/review/${id}`)
+    getReviews(initialState.title)
+    setHidden(true)
   }
   const edit = () => {
     if (editing == false) {
@@ -138,7 +140,7 @@ const SearchBookCard = ({ currentUser, user }) => {
           )}
           <button onClick={showReviewCard}>Review</button>
         </div>
-        <p>{initialState.about}</p>
+        {initialState.about == 'undefined' ? null : <p>{initialState.about}</p>}
       </div>
       {reviewCard ? (
         <CreateReview

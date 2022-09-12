@@ -8,7 +8,10 @@ const Search = ({ API_KEY, user }) => {
   let navigate = useNavigate()
   const [searchQuery, setSearchQuery] = useState('')
   const [searchUserQuery, setSearchUserQuery] = useState('')
+  const [userSearch, setUserSearch] = useState(false)
+  const [bookSearch, setBookSearch] = useState(true)
   const [searchedUser, setSearchedUser] = useState([])
+  const [currentFunction, setCurrentFunction] = useState('')
   const [books, setBooks] = useState([])
   const [searched, setSearched] = useState(false)
 
@@ -19,40 +22,61 @@ const Search = ({ API_KEY, user }) => {
     console.log(result.data.items)
     setBooks(result.data.items)
     setSearched(true)
+    setUserSearch(false)
   }
   const findUser = async () => {
-    const res = await axios.get(
-      `http://localhost:3001/api/user/${searchUserQuery}`
-    )
+    const res = await axios.get(`http://localhost:3001/api/user/${searchQuery}`)
     console.log(res.data)
     setSearchedUser(res.data)
+    setSearched(false)
+    setUserSearch(true)
   }
+  const handleChange = (event) => {
+    let input = event.target.value
+    setSearchQuery(input)
+  }
+
   const seeBook = (book) => {
     navigate(`book/${book.id}`, { state: { book: book } })
+  }
+  const orBook = () => {
+    setBookSearch(true)
+    setUserSearch(false)
+    setCurrentFunction(findBooks())
+  }
+  const orUser = () => {
+    setBookSearch(false)
+    setUserSearch(true)
+    setCurrentFunction(findUser())
   }
 
   return (
     <div>
-      <BookSearch
-        setSearchQuery={setSearchQuery}
-        findBooks={findBooks}
-        searchQuery={searchQuery}
-        searched={searched}
-        books={books}
-      />
-      <UserSearch
-        setSearchUserQuery={setSearchUserQuery}
-        searchUserQuery={searchUserQuery}
-        findUser={findUser}
-        searchedUser={searchedUser}
-      />
+      <div className="search">
+        <input
+          type="text"
+          name="search"
+          value={searchQuery}
+          placeholder="Book Title"
+          onChange={handleChange}
+          className="search-input"
+        ></input>
+        {/* <button type="submit" onClick={currentFunction} className="search-btn">
+          Search
+        </button> */}
+      </div>
+      <div className="search-tag">
+        <h3 onClick={orBook}>Books</h3>
+        <h3 onClick={orUser}>User</h3>
+      </div>
+      <UserSearch searchedUser={searchedUser} userSearch={userSearch} />
       {searched ? null : (
         <div>
           <Recomend user={user} API_KEY={API_KEY} seeBook={seeBook} />
         </div>
       )}
       <div>
-        {searched ? (
+        {searched && bookSearch ? (
           <div className="search-elements">
             {books.map((book) => (
               <div

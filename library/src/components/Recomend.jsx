@@ -26,7 +26,9 @@ const Recomend = ({user, API_KEY, seeBook})=>{
       }, [])
 
     return <div>
-        <h3>You may also like...</h3>
+        <div className='recommend-tag'>
+        <h3 >You may also like...</h3>
+        </div>
         {loading ? (<div><h3>Loading....Please wait</h3></div>):(<div className="search-elements">
         {recBooks.map((book)=>(
             <div key ={book.volumeInfo.authors}

@@ -47,7 +47,12 @@ img{
   border-radius: 20px;
 }
 .Nav{
-  overflow: hidden;
+  /* overflow: hidden; */
+  position: fixed;
+  top:10px;
+  width: 100%;
+
+
 }
 .Nav a{
   font-size: 16px;
@@ -59,6 +64,8 @@ img{
   text-decoration: none;
 }
 .dropdown {
+  position:absolute;
+  margin-left: 85%;
   float: left;
   overflow: hidden;
   display: none;
@@ -73,8 +80,12 @@ img{
   background-color: rgba(190, 190, 190, 0.8);
 }
 .nav-button {
-  position:fixed;
+  position:absolute;
+  margin-top: 20px;
+  margin-left: 90%;
   font-size: 16px;
+  text-align: right;
+  padding-right: 100px;
   border: none;
   outline: none;
   color: white;
@@ -94,11 +105,9 @@ img{
 }
 a{
   text-decoration:none;
-  /* color:  rgb(239, 239, 239); */
 }
 a:visited{
   text-decoration:none;
-  /* color: rgb(239, 239, 239); */
 } 
 /* ----------LOGIN---SIGNIN------- */
 .signin-form{
@@ -180,12 +189,34 @@ white-space: nowrap;
 .profile-user-follow-tag{
   margin-left: auto;
   margin-right: auto;
-
 }
 .profile-user-follow{
   padding: 15px;
 }
-
+.get-libraries {
+  background-color: none;
+  color: white;
+  padding: 10px;
+  border-bottom:solid 1px #cbcbcb;
+  width:15%;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.get-libraries:hover{
+  width:15%;
+  border:solid 1px #cbcbcb;
+  border-radius: 8px;
+}
+.get-libraries-clicked{
+  background-color: none;
+  color: white;
+  padding: 10px;
+  width:15%;
+  border:solid 1px #cbcbcb;
+  border-radius: 8px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
 .profile-books{
   max-width: 80%;
   display: flex;
@@ -195,14 +226,28 @@ white-space: nowrap;
   margin:auto;
 }
 .profile-books-book{
+  border:solid 1px #cbcbcb;
+  border-radius: 8px;
+  color:white;
+  padding:10px;
+  text-align: center;
   margin:15px;
+  min-height: 150px;
+  /* margin:15px;
   background-color: whitesmoke;
   min-height:150px;
   text-align: center;
   padding:10px;
-  border-radius: 8px;
+  border-radius: 8px; */
 }
+.profile-books-book:hover{
+  /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+  background-color: #444444; */
+  background-color: #2a2a2a;
+}
+/*---------SEARCH-----------*/
 .search{
+  margin-top: 60px;
   margin-left: auto;
   margin-right: auto;
   max-width:30%;
@@ -210,13 +255,34 @@ white-space: nowrap;
   display: flex;
   flex-direction:row;
 }
-
-.search button{
+/* .search button{
   padding:10px;
-}
+} */
 .search-input{
   padding:10px;
-  
+  margin:auto;
+  width: 80%;
+}
+.search-tag{
+  display: flex;
+  flex-direction:row;
+  margin: auto;
+  text-align: center;
+  max-width: 20%;
+}
+.search-tag h3{
+  background-color: none;
+  color: white;
+  padding: 10px;
+  border-bottom:solid 1px #cbcbcb;
+  width:50%;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.search-tag h3:hover{
+  width:50%;
+  border:solid 1px #cbcbcb;
+  border-radius: 8px;
 }
 .search-book-card-banner{
   position:fixed;
@@ -240,17 +306,30 @@ white-space: nowrap;
 .search-elements img{
 width:25%;
 }
+.recommend-tag{
+  text-align: left;
+  margin-left:10%;
+}
+.recommend-tag h3{
+  color:white;
+  border-bottom:solid 1px #cbcbcb;
+  width:50%
+}
 .element{
   text-align: center;
   flex-grow:1;
   margin:8px;
   width:30%;
-  background-color: #cbcbcb;
+  /* background-color: #cbcbcb; */
+  border: solid 1px rgb(219, 219, 219);
   border-radius: 6px;
+}
+.element:hover{
+  background-color: #2a2a2a;
 }
 .element h2{
   font-size: 16px;
-  color: black;
+  color:#cbcbcb;
 }
 .book-card{
   margin:auto;
@@ -258,7 +337,7 @@ width:25%;
   text-align: center;
 }
 .book-card img{
-   max-width:20%;
+  max-width:20%;
 }
 .book-card p{
   margin:auto;
@@ -291,12 +370,18 @@ width:25%;
 .book-card-user button{
 height: 5%;
 padding: 13px;
+background-color: rgb(213, 213, 213);
+}
+.book-card-user button:hover{
+padding:11px;
+
 }
 .book-card-user img{
-  padding: 20px;
-  max-width: 10%;
+  margin: 10px;
+  margin-right: 20px;
+  max-width: 15%;
   border:none;
-  border-radius: 30px;
+  border-radius: 8px;
 }
 .book-card-user h3{
   padding-right: 26px;
@@ -308,32 +393,44 @@ padding: 13px;
   justify-content: center;
 }
 .library-card button{
+  margin:20px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
 }
-
+.library-card button:hover{
+  padding: 12px;
+}
 /*------Reviews-----*/
 .edit{
   text-align: center;
+  background-color:  rgb(213, 213, 213);
+  padding:13px
+}
+.edit:hover{
+  padding:10px;
 }
 .text-review{
   text-align: left;
   padding-left:30px;
-  color: black;
-  background-color: rgba(255, 255, 255, 0.7);
+  color: rgb(213, 213, 213);
+  /* background-color: rgba(255, 255, 255, 0.7); */
   padding: 10px;
-  border-bottom: 1px;
+  border:solid white 1px;
   border-radius: 8px;
 }
 .book-card-h2{
-  color:black;
+  color: rgb(213, 213, 213);
+  font-size: 100%;
+
 }
 .review{
   flex-grow:1;
   max-width:40%;
   height: auto;
-  background:rgba(232, 232, 232, 0.8);
+  /* background:rgba(232, 232, 232, 0.8); */
   margin-left: auto;
   margin-right: auto;
+  border: 1px white solid;
+  /* border-bottom: none; */
   border-radius: 8px;
   margin-top:30px;
   text-align: center;
@@ -363,6 +460,13 @@ padding: 13px;
   margin-right: auto;
   align-items: center;
   width:80%;
+}
+.edit-review-select{
+  padding:15px;
+  font-size: medium;
+  font-family: 'Courier Prime', monospace;
+  border: none;
+  border-radius: 8px;
 }
 .create-book-card img{
   margin-top: 20px;
@@ -401,6 +505,30 @@ padding: 13px;
 .book-card-form button{
   padding:10px;
   font-size: 15px;
+}
+.search-book-card-banner{
+  position:fixed;
+  width:20%;
+  /* margin-left: auto;
+  margin-right: auto; */
+  background: rgb(220, 220, 220);
+  border: solid rgb(220, 220, 220) ;
+  border-radius: 8px;
+  top: 45%;
+  left:40%;
+  /* right: 50%; */
+  padding:5px;
+  /* text-align: center; */
+}
+.search-book-card-banner button{
+  background-color: rgb(220, 220, 220);
+  padding:10px;
+  border: solid black 1px;
+}
+.search-book-card-banner button:hover{
+  background-color: rgb(220, 220, 220);
+  padding:12px;
+  border: solid black 1px;
 }
 /*-------SETTINGS--------*/
 .settings{
@@ -451,7 +579,9 @@ padding: 13px;
 }
 .infoChange input{
   margin:10px;
-  background-color: #e8e8e8;
+  /* background-color: #e8e8e8; */
+  background-color: none;
+  border:solid rgb(67, 67, 67) 1px;
 }
 .infoChange button{
   padding:10px
@@ -467,7 +597,9 @@ padding: 13px;
   border-radius: 5px;
 }
 .passwordChange input{
-  background-color: #e8e8e8;
+  /* background-color: #e8e8e8; */
+  background-color: none;
+  border:solid rgb(67, 67, 67) 1px;
   padding:10px;
   margin:5px;
 }
@@ -488,7 +620,9 @@ padding: 13px;
     padding:8px;
   }
   .Nav{
-    overflow: hidden;
+    position: fixed;
+    top:10px;
+    width: 100%;
   }
   .Nav a{
     font-size: 16px;
@@ -512,11 +646,14 @@ padding: 13px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     border-radius: 8px;
+    margin-left: 70%;
   }
   .dropdown a:hover{
     background-color: rgba(190, 190, 190, 0.8);
   }
   .nav-button {
+    margin-top: 20px;
+    margin-left: 70%;
     position:fixed;
     font-size: 16px;
     border: none;
@@ -596,9 +733,28 @@ padding: 13px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
   }
   .profile-books-book h3{
-    color:black;
+    color:white;
     font-size: 16px;
     padding-bottom:5px;
+  }
+  .get-libraries {
+    background-color: none;
+    color: white;
+    padding: 10px;
+    border-bottom:solid 1px #cbcbcb;
+    width:15%;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  .get-libraries-clicked{
+    background-color: none;
+    color: white;
+    padding: 15px;
+    width:24%;
+    border:solid 1px #cbcbcb;
+    border-radius: 8px;
+    margin-right: 10px;
+    margin-left: 10px;
   }
   .library-card{
     display: flex;
@@ -618,12 +774,17 @@ padding: 13px;
     flex-grow:1;
     margin:8px;
     width:30%;
-    background-color: #cbcbcb;
+    /* background-color: #cbcbcb; */
+    border: solid 1px rgb(219, 219, 219);
     border-radius: 6px;
   }
   .element h2{
-    font-size: 16px;
-    color: black;
+    font-size: 13px;
+    color: white;
+  }
+  .element img{
+    width:30%;
+    border-radius:8px;
   }
   .book-card{
     margin:auto;
@@ -650,9 +811,10 @@ padding: 13px;
   }
   .review{
     flex-grow:1;
-    width:96%;
+    max-width:89%;
     height: auto;
-    background:rgba(232, 232, 232, 0.8);
+    border: solid 1px rgba(255, 255, 255, 0.7);
+    /* background:rgba(232, 232, 232, 0.8); */
     margin-left: auto;
     margin-right: auto;
     border-radius: 8px;
@@ -668,14 +830,15 @@ padding: 13px;
     text-align: center;
   }
   .book-card-user button{
-  height: 5%;
+ height: 5%; 
   padding: 13px;
   }
   .book-card-user img{
-    padding: 20px;
+    max-width:20%;
   }
   .book-card-user h3{
     padding-right: 26px;
+    color:white;
   }
   .edit{
     text-align: center;
@@ -683,14 +846,15 @@ padding: 13px;
   .text-review{
     text-align: left;
     padding-left:30px;
-    color: black;
-    background-color: rgba(255, 255, 255, 0.7);
+    color: white;
+    /* background-color: rgba(255, 255, 255, 0.7); */
     padding: 10px;
+    border:none;
     border-bottom: 1px;
     border-radius: 8px;
   }
   .book-card-h2{
-    color:black;
+    color:white;
   }
   .review-input{
     background-color: #f9f9f9;
@@ -707,7 +871,7 @@ padding: 13px;
     padding:10px;
     background-color: #f9f9f9;
     position: relative;
-    left:80%;
+    /* left:80%; */
   }
   .search{
     margin-left: auto;
@@ -722,6 +886,13 @@ padding: 13px;
     flex-wrap:wrap;
     justify-content: center;
   }
+  .search-tag{
+    display: flex;
+    flex-direction:row;
+    margin: auto;
+    text-align: center;
+    max-width: 50%;
+  }
   .search-elements img{
   width:25%;
   }
@@ -730,16 +901,15 @@ padding: 13px;
   }
   .search-input{
     padding:10px;
-    
   }
   .search-book-card-banner{
     position:fixed;
-    width:80%;
-    background: rgb(255, 255, 255);
-    border: solid rgb(255, 255, 255) ;
+    width:50%;
+    max-width:100%;
     border-radius: 8px;
     top: 30%;
-    right: 10%;
+    right: 70%;
+    left:20%;
     padding:5px;
     text-align: center;
   }
@@ -757,7 +927,7 @@ padding: 13px;
   }
   .edit-review-btn{
     position: relative;
-    left:70%;
+    left:0%;
     padding: 15px;
   }
   .create-book-card{
