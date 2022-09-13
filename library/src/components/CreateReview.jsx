@@ -11,7 +11,7 @@ const CreateReview = ({bookId, initialState, user, getReviews, showReviewCard, s
       })
       console.log(bookId)
       const addReview = async(newReview)=>{
-      const result = await axios.post(`http://localhost:3001/api/review/${bookId}/${user.id}`, newReview)
+      const result = await axios.post(`https://librarydb.fly.dev/api/review/${bookId}/${user.id}`, newReview)
 
     }
 

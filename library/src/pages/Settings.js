@@ -27,7 +27,7 @@ const Settings = ({ user, userInfo }) => {
   }
   const changeUserInfo = async (info) => {
     const result = await axios.put(
-      `http://localhost:3001/api/user/${user.id}`,
+      `https://librarydb.fly.dev/api/user/${user.id}`,
       info
     )
   }

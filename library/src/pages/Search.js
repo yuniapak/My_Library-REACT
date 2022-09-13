@@ -25,7 +25,9 @@ const Search = ({ API_KEY, user, authenticated }) => {
     setUserSearch(false)
   }
   const findUser = async () => {
-    const res = await axios.get(`http://localhost:3001/api/user/${searchQuery}`)
+    const res = await axios.get(
+      `https://librarydb.fly.dev/api/user/${searchQuery}`
+    )
     console.log(res.data)
     setSearchedUser(res.data)
     setSearched(false)

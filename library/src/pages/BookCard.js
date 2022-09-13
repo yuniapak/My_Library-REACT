@@ -27,7 +27,7 @@ const BookCard = ({ user }) => {
 
   const getReviews = async () => {
     const result = await axios.get(
-      `http://localhost:3001/api/review/${initialState.bookId}`
+      `https://librarydb.fly.dev/api/review/${initialState.bookId}`
     )
     setBookId(initialState.bookId)
     setReviews(result.data)
@@ -53,7 +53,7 @@ const BookCard = ({ user }) => {
   }
 
   const deleteReview = async (id) => {
-    await axios.delete(`http://localhost:3001/api/review/${id}`)
+    await axios.delete(`https://librarydb.fly.dev/api/review/${id}`)
     console.log('deleted')
     getReviews()
     setHidden(true)

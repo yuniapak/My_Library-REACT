@@ -10,7 +10,7 @@ const PasswordSettings =({user, changePassword})=>{
       const updatePassword = async (form) => {
         try {
           const res = await axios.put(
-            `http://localhost:3001/api/auth/update/${user.id}`,
+            `https://librarydb.fly.dev/api/auth/update/${user.id}`,
             form
           )
         } catch (error) {

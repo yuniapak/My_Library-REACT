@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import {useState} from 'react'
-import Menu from "../img/menu3.png"
+import Menu from "../img/menu4.png"
 const Navigation = ({authenticated, user, handleLogOut})=>{
     const [style, setStyle] = useState('Nav-hidden')
     

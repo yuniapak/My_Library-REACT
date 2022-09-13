@@ -7,7 +7,6 @@ body{
 input{
   font-family: 'Courier Prime', monospace;
   padding:9px;
-  border-radius:5px;
   background-color: rgb(213, 213, 213);
   border: rgb(213, 213, 213) 2px;
 }
@@ -34,11 +33,11 @@ button{
   color:white;
   border: 1px solid white;
   background-color: rgb(61, 61, 61);
-  border-radius:5px;
+  /* border-radius:5px; */
   margin:8px;
 } 
 button:hover{
-  padding:12px;
+  padding:18px;
 }
 
 /*Nav-bar*/
@@ -50,7 +49,7 @@ button:disabled{
 } 
 img{
   width: 60%;
-  border-radius: 20px;
+  /* border-radius: 20px; */
 }
 .Nav{
   /* overflow: hidden; */
@@ -79,7 +78,7 @@ img{
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
-  border-radius: 8px;
+  /* border-radius: 8px; */
 }
 .dropdown a:hover{
   background-color: rgba(190, 190, 190, 0.8);
@@ -104,7 +103,7 @@ img{
   flex-grow: 1;
 }
 .nav-button img{
-  width:100%;
+  width:80%;
   margin:0;
 }
 
@@ -159,7 +158,7 @@ margin-bottom: 0;
   text-align: center;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
   background-color: rgb(98, 98, 98);
-  border-radius: 8px;
+   border-radius: 8px; 
   max-width: 50%;
 }
 .signin-form label{
@@ -221,7 +220,7 @@ white-space: nowrap;
   vertical-align: bottom;
   display: inline-block;
   padding:10px;
-}
+} 
 .profile-user h2{
   color: #373737;
   padding: 10px;
@@ -375,10 +374,13 @@ width:25%;
   margin:auto;
   max-width:70%;
   font-size: 16px;
-  background-color: rgb(203, 203, 203);
+  /* background-color: rgb(203, 203, 203); */
   padding: 15px;
   border-radius: 8px;
-  box-shadow: 0 30px 40px rgba(197, 197, 197, 0.3)
+  color:rgb(212, 212, 212);
+  margin-top:10px;
+  border: solid white 1px;
+  /* box-shadow: 0 30px 40px rgba(197, 197, 197, 0.3) */
 }
 .book-card h3, h2{
   color:rgb(220, 220, 220);
@@ -417,6 +419,7 @@ padding:11px;
 }
 .book-card-user h3{
   padding-right: 26px;
+  color:white;
 }
 .library-card{
   display: flex;
@@ -444,7 +447,7 @@ padding:11px;
   padding:10px;
   margin:5px;
   border:none;
-  border-radius: 8px;
+  /* border-radius: 8px; */
   background-color: #cbcbcb;
   font-family:'Courier Prime', monospace ;
 }
@@ -512,7 +515,7 @@ padding:11px;
   padding:10px;
   font-family: 'Courier Prime', monospace;
   border: none;
-  border-radius: 8px;
+  /* border-radius: 8px; */
 }
 .review-btn{
   padding:10px;
@@ -531,7 +534,7 @@ padding:11px;
   font-size: medium;
   font-family: 'Courier Prime', monospace;
   border: none;
-  border-radius: 8px;
+  /* border-radius: 8px; */
 }
 .create-book-card img{
   margin-top: 20px;
@@ -557,7 +560,7 @@ padding:11px;
   font-size: medium;
   font-family: 'Courier Prime', monospace;
   border: none;
-  border-radius: 8px;
+  /* border-radius: 8px; */
 }
 .book-card-form input{
   padding:9px;
@@ -565,7 +568,7 @@ padding:11px;
   font-family: 'Courier Prime', monospace;
   border: none;
   background-color: #e9e9e9;
-  border-radius: 8px;
+  /* border-radius: 8px; */
 }
 .book-card-form button{
   padding:10px;
@@ -586,14 +589,14 @@ padding:11px;
   /* text-align: center; */
 }
 .search-book-card-banner button{
-  background-color: rgb(220, 220, 220);
+  /* background-color: rgb(220, 220, 220); */
   padding:10px;
-  border: solid black 1px;
+  border: solid white 1px;
 }
 .search-book-card-banner button:hover{
-  background-color: rgb(220, 220, 220);
+  /* background-color: rgb(220, 220, 220); */
   padding:12px;
-  border: solid black 1px;
+  border: solid white 1px;
 }
 /*-------SETTINGS--------*/
 .settings{
@@ -690,7 +693,7 @@ padding:11px;
   }
   .Nav{
     position: fixed;
-    top:-18px;
+    top:0px;
     width: 100%;
   }
   .home-search{
@@ -730,7 +733,7 @@ padding:11px;
     background-color: rgba(190, 190, 190, 0.8);
   }
   .nav-button {
-    margin-top: 0px;
+    margin-top: 20px;
     margin-left: 70%;
     position:fixed;
     font-size: 16px;
@@ -743,7 +746,12 @@ padding:11px;
     margin-top: 0px; 
   }
   .nav-button img{
-    width:130%;
+
+    width:100%;
+    margin:0;
+  }
+  .nav-button img:hover{
+    width:100%;
     margin:0;
   }
   .nav-button:hover + .dropdown{
@@ -873,10 +881,10 @@ padding:11px;
   }
   .book-card p{
     font-size: 16px;
-    background-color: rgb(203, 203, 203);
+    background-color: none;
     padding: 15px;
     border-radius: 8px;
-    box-shadow: 0 30px 40px rgba(197, 197, 197, 0.3)
+    /* box-shadow: 0 30px 40px rgba(197, 197, 197, 0.3) */
   }
   .book-card h3, h2{
     color:rgb(220, 220, 220);
@@ -953,7 +961,7 @@ padding:11px;
     padding:10px;
     font-family: 'Courier Prime', monospace;
     border: none;
-    border-radius: 8px;
+    /* border-radius: 8px; */
   }
   .review-btn{
     padding:10px;
@@ -1011,7 +1019,7 @@ padding:11px;
     font-size: medium;
     font-family: 'Courier Prime', monospace;
     border: none;
-    border-radius: 8px;
+    /* border-radius: 8px; */
   }
   .edit-review-btn{
     position: relative;
@@ -1051,7 +1059,7 @@ padding:11px;
     font-size: medium;
     font-family: 'Courier Prime', monospace;
     border: none;
-    border-radius: 8px;
+    /* border-radius: 8px; */
   }
   .book-card-form input{
     padding:9px;
@@ -1059,7 +1067,7 @@ padding:11px;
     font-family: 'Courier Prime', monospace;
     border: none;
     background-color: #e9e9e9;
-    border-radius: 8px;
+    /* border-radius: 8px; */
   }
   .book-card-form button{
     padding:10px;

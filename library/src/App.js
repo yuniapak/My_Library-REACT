@@ -51,7 +51,7 @@ function App() {
   //followers
   const getFollowing = async (id) => {
     const result = await axios.get(
-      `http://localhost:3001/api/user/following/${id}`
+      `https://librarydb.fly.dev/api/user/following/${id}`
     )
     console.log(id)
     console.log(result.data)
@@ -63,7 +63,7 @@ function App() {
 
   const getFollowers = async (id) => {
     const res = await axios.get(
-      `http://localhost:3001/api/user/followers/${id}`
+      `https://librarydb.fly.dev/api/user/followers/${id}`
     )
     console.log(id)
     console.log('following got')

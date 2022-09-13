@@ -21,7 +21,7 @@ const BookForm = ({ book, user }) => {
   const createBook = async () => {
     //find book if exist by title
     const result = await axios.get(
-      `http://localhost:3001/api/book/title/bookTitle?search=${initialState.title}`
+      `https://librarydb.fly.dev/api/book/title/bookTitle?search=${initialState.title}`
     )
     console.log(result.data)
     setMatchBook(result.data[0])
@@ -34,7 +34,10 @@ const BookForm = ({ book, user }) => {
         about: initialState.about,
         image: initialState.image
       }
-      const newBook = await axios.post('http://localhost:3001/api/book', book)
+      const newBook = await axios.post(
+        'https://librarydb.fly.dev/api/book',
+        book
+      )
       console.log('book created' + book)
       setMatchBook(newBook.data)
     } else {
@@ -51,7 +54,7 @@ const BookForm = ({ book, user }) => {
   }
   const addUserBook = async (book) => {
     const result = await axios.post(
-      `http://localhost:3001/api/book/userbook/${user.id}/${matchBook.id}`,
+      `https://librarydb.fly.dev/api/book/userbook/${user.id}/${matchBook.id}`,
       book
     )
   }

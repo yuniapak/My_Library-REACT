@@ -7,7 +7,7 @@ const Recomend = ({user, API_KEY, seeBook})=>{
     const [loading, setLoading]= useState(true)
     let length = 0
     const getLastBooks =async()=>{
-        const result = await axios.get (`http://localhost:3001/api/book/allUserBooks/${user.id}`)
+        const result = await axios.get (`https://librarydb.fly.dev/api/book/allUserBooks/${user.id}`)
 
         let length = result.data.length-1
         console.log(result.data[length])
