@@ -25,8 +25,10 @@ const Navigation = ({authenticated, user, handleLogOut})=>{
         <div className="Nav">
             <button className='nav-button'><img src={Menu}/></button>
         <div className="dropdown">
+        <NavLink to='#'></NavLink>
         <NavLink to='/signup'>SignUp</NavLink>
         <NavLink to='/login'>LogIn</NavLink>
+        <NavLink to='/search'>Search</NavLink>
         </div>
         </div>
     )

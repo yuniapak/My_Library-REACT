@@ -13,8 +13,6 @@ const Profile = ({ loading, user, setUserInfo, userInfo, currentUser }) => {
   const [followers, setFollowers] = useState('')
   const [classN, setClassN] = useState('get-libraries')
   let currentLibraries = []
-  console.log(currentUser)
-  // console.log(bookUser)
 
   const getLibraries = async () => {
     try {
@@ -24,7 +22,7 @@ const Profile = ({ loading, user, setUserInfo, userInfo, currentUser }) => {
       result.data.map(({ library }) => {
         currentLibraries.push(library)
       })
-      console.log([...new Set(currentLibraries)])
+
       setLibraries([...new Set(currentLibraries)])
       setClassN('get-libraries-clicked')
     } catch (error) {
@@ -36,7 +34,7 @@ const Profile = ({ loading, user, setUserInfo, userInfo, currentUser }) => {
     const result = await axios.get(
       `http://localhost:3001/api/user/userId/${user.id}`
     )
-    console.log(result.data)
+
     setUserInfo(result.data)
     setFollowerLoading(false)
   }
@@ -45,7 +43,7 @@ const Profile = ({ loading, user, setUserInfo, userInfo, currentUser }) => {
     const result = await axios.get(
       `http://localhost:3001/api/book/library/${user.id}/${e.target.value}`
     )
-    console.log(result.data)
+
     setBooks(result.data)
     setBookShow(true)
   }
@@ -59,8 +57,7 @@ const Profile = ({ loading, user, setUserInfo, userInfo, currentUser }) => {
     const result = await axios.get(
       `http://localhost:3001/api/user/following/${id}`
     )
-    console.log(id)
-    console.log(result.data)
+
     let followingCount = ' ' + result.data.length
     setFollowing(followingCount)
     console.log('followers got')
@@ -70,8 +67,6 @@ const Profile = ({ loading, user, setUserInfo, userInfo, currentUser }) => {
     const res = await axios.get(
       `http://localhost:3001/api/user/followers/${id}`
     )
-    console.log(id)
-    console.log('following got')
     setFollowers(res.data.length)
   }
 
@@ -100,14 +95,11 @@ const Profile = ({ loading, user, setUserInfo, userInfo, currentUser }) => {
           <img src={userInfo.image} />
           <div className="profile-user-follow">
             <h2>{userInfo.username}</h2>
-            {/* {followerLoading ? ( */}
+
             <div className="profile-user-follow-tag">
               <h3>Following: {following}</h3>
               <h3>Followers: {followers}</h3>
             </div>
-            {/* ) : (
-              <h3>loading...</h3>
-            )} */}
           </div>
         </div>
         <h3 onClick={getLibraries} className={classN}>

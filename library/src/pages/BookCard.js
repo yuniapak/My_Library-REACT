@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import UpdateReview from '../components/UpdateReview.jsx'
 import CreateReview from '../components/CreateReview.jsx'
+import UpdateBook from '../components/UpdateBook.jsx'
 const BookCard = ({ user }) => {
   let location = useLocation()
   const [reviews, setReviews] = useState([])
@@ -11,6 +12,7 @@ const BookCard = ({ user }) => {
   const [bookId, setBookId] = useState(Number)
   const [hidden, setHidden] = useState(true)
   const [editing, setEditing] = useState(false)
+  const [updating, setUpdating] = useState(false)
   const initialState = {
     id: `${location.state.book.id}`,
     userId: `${location.state.book.userId}`,
@@ -19,7 +21,8 @@ const BookCard = ({ user }) => {
     author: `${location.state.book.Book.author}`,
     about: `${location.state.book.Book.about}`,
     status: `${location.state.book.status}`,
-    bookId: `${location.state.book.Book.id}`
+    bookId: `${location.state.book.Book.id}`,
+    library: `${location.state.book.library}`
   }
 
   const getReviews = async () => {
@@ -30,7 +33,6 @@ const BookCard = ({ user }) => {
     setReviews(result.data)
     reviews.map((review) => {
       if (review.userId == initialState.userId) {
-        console.log(review)
         setFirstReview(review)
       }
     })
@@ -76,11 +78,19 @@ const BookCard = ({ user }) => {
         <img src={initialState.image} />
         <h2>{initialState.title}</h2>
         <h2>{initialState.author}</h2>
-        <h3>{initialState.status}</h3>
+        {updating ? (
+          <UpdateBook
+            user={user}
+            initialState={initialState}
+            setUpdating={setUpdating}
+          />
+        ) : (
+          <h3>{initialState.status}</h3>
+        )}
         <p>{initialState.about}</p>
         <button onClick={showReviewCard}>Review</button>
+        <button onClick={() => setUpdating(true)}>Book Settings</button>
       </div>
-      {/* <UpdateReview /> */}
       {reviewCard ? (
         <CreateReview
           bookId={bookId}

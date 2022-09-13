@@ -12,31 +12,29 @@ const CreateReview = ({bookId, initialState, user, getReviews, showReviewCard, s
       console.log(bookId)
       const addReview = async(newReview)=>{
       const result = await axios.post(`http://localhost:3001/api/review/${bookId}/${user.id}`, newReview)
-      console.log(newReview)
+
     }
 
       const handleChange = (event) => {
         setReview({ ...review, [event.target.name]: event.target.value })
-        console.log(review)
+
       }
 
       const handleSubmit = async (e) => {
         e.preventDefault()
         await addReview(review)
-        console.log(review)
+
         setReview({
           comment: '',
           rating: ''
         })
-        console.log('Review created')
+
         getReviews(initialState.title)
         setReviewCard(false)
-        // navigate(`/search/book/${initialState.id}`,{
-        //     state: { book: initialState }})
+
       }
 
     return <div>
-        {/* <h2>Create Review</h2> */}
         <form onSubmit={handleSubmit}>
           <div className="review">
             <input maxLength="150"
