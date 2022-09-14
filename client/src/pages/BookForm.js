@@ -21,7 +21,7 @@ const BookForm = ({ book, user }) => {
   const createBook = async () => {
     //find book if exist by title
     const result = await axios.get(
-      `https://librarydb.fly.dev/api/book/title/bookTitle?search=${initialState.title}`
+      `https://librarydb01.herokuapp.com/api/book/title/bookTitle?search=${initialState.title}`
     )
     console.log(result.data)
     setMatchBook(result.data[0])
@@ -35,7 +35,7 @@ const BookForm = ({ book, user }) => {
         image: initialState.image
       }
       const newBook = await axios.post(
-        'https://librarydb.fly.dev/api/book',
+        'https://librarydb01.herokuapp.com/api/book',
         book
       )
       console.log('book created' + book)
@@ -54,7 +54,7 @@ const BookForm = ({ book, user }) => {
   }
   const addUserBook = async (book) => {
     const result = await axios.post(
-      `https://librarydb.fly.dev/api/book/userbook/${user.id}/${matchBook.id}`,
+      `https://librarydb01.herokuapp.com/api/book/userbook/${user.id}/${matchBook.id}`,
       book
     )
   }

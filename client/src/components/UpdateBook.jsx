@@ -1,8 +1,9 @@
 import axios from 'axios'
 import { useState, useEffect} from 'react'
-import {usweNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 const UpdateBook =({user, initialState, setUpdating})=>{
     let navigate = useNavigate()
+    
     const[libraries, setLibraries]= useState([])
     const [bookForm, setBookForm]=useState({
         userId: user.id,
@@ -15,7 +16,7 @@ const UpdateBook =({user, initialState, setUpdating})=>{
     const getLibraries = async () => {
         try {
           const result = await axios.get(
-            `https://librarydb.fly.dev/api/book/userbook/${user.id}`
+            `https://librarydb01.herokuapp.com/api/book/userbook/${user.id}`
           )
           result.data.map(({ library }) => {
             currentLibraries.push(library)
@@ -26,7 +27,7 @@ const UpdateBook =({user, initialState, setUpdating})=>{
         }
       }
     const updateBook =async(form)=>{
-        let res = await axios.put(`https://librarydb.fly.dev/api/book/userbook/${initialState.id}`, form)
+        let res = await axios.put(`https://librarydb01.herokuapp.com/api/book/userbook/${initialState.id}`, form)
         console.log(res.data)
     }
     const handleChange = (event) => {

@@ -27,7 +27,7 @@ const Settings = ({ user, userInfo }) => {
   }
   const changeUserInfo = async (info) => {
     const result = await axios.put(
-      `https://librarydb.fly.dev/api/user/${user.id}`,
+      `https://librarydb01.herokuapp.com/api/user/${user.id}`,
       info
     )
   }

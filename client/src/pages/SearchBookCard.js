@@ -27,7 +27,7 @@ const SearchBookCard = ({ currentUser, user, authenticated }) => {
     setInLibrary(false)
     //finding book by title
     const result = await axios.get(
-      `https://librarydb.fly.dev/api/book/title/bookTitle?search=${title}`
+      `https://librarydb01.herokuapp.com/api/book/title/bookTitle?search=${title}`
     )
     console.log(result.data)
     console.log(result.data[0])
@@ -40,7 +40,7 @@ const SearchBookCard = ({ currentUser, user, authenticated }) => {
       console.log(book.id)
       //find review
       const res = await axios.get(
-        `https://librarydb.fly.dev/api/review/${book.id}`
+        `https://librarydb01.herokuapp.com/api/review/${book.id}`
       )
       console.log(res.data)
       setReviews(res.data)
@@ -54,7 +54,7 @@ const SearchBookCard = ({ currentUser, user, authenticated }) => {
     console.log(user.id)
     console.log(bookID)
     const result = await axios.get(
-      `https://librarydb.fly.dev/api/book/userbook/book/${user.id}/${bookID}`
+      `https://librarydb01.herokuapp.com/api/book/userbook/book/${user.id}/${bookID}`
     )
     console.log(result.data)
     setLibrary(result.data[0].library)
@@ -81,7 +81,10 @@ const SearchBookCard = ({ currentUser, user, authenticated }) => {
       about: initialState.about,
       image: initialState.image
     }
-    const newBook = await axios.post('https://librarydb.fly.dev/api/book', book)
+    const newBook = await axios.post(
+      'https://librarydb01.herokuapp.com/api/book',
+      book
+    )
     console.log('book created' + book)
     console.log(newBook.data.id)
     setBookId(newBook.data.id)
@@ -105,7 +108,7 @@ const SearchBookCard = ({ currentUser, user, authenticated }) => {
     }
   }
   const deleteReview = async (id) => {
-    await axios.delete(`https://librarydb.fly.dev/api/review/${id}`)
+    await axios.delete(`https://librarydb01.herokuapp.com/api/review/${id}`)
     getReviews(initialState.title)
     setHidden(true)
   }

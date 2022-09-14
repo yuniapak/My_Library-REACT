@@ -8,7 +8,7 @@ const UpdateReview = ({review, bookId, edit})=>{
         rating: review.rating
     })
     const editReview = async(newReview)=>{
-    const result = await axios.put(`https://librarydb.fly.dev/api/review/${review.id}`, newReview)
+    const result = await axios.put(`https://librarydb01.herokuapp.com/api/review/${review.id}`, newReview)
 }
 
 const handleChange = (event)=>{

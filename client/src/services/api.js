@@ -1,7 +1,6 @@
 import Axios from 'axios'
 
-export const BASE_URL = 'https://librarydb.fly.dev'
-
+export const BASE_URL = 'https://librarydb01.herokuapp.com'
 const Client = Axios.create({ baseURL: BASE_URL })
 
 Client.interceptors.request.use(

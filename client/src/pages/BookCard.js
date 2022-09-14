@@ -27,7 +27,7 @@ const BookCard = ({ user }) => {
 
   const getReviews = async () => {
     const result = await axios.get(
-      `https://librarydb.fly.dev/api/review/${initialState.bookId}`
+      `https://librarydb01.herokuapp.com/api/review/${initialState.bookId}`
     )
     setBookId(initialState.bookId)
     setReviews(result.data)
@@ -53,7 +53,7 @@ const BookCard = ({ user }) => {
   }
 
   const deleteReview = async (id) => {
-    await axios.delete(`https://librarydb.fly.dev/api/review/${id}`)
+    await axios.delete(`https://librarydb01.herokuapp.com/api/review/${id}`)
     console.log('deleted')
     getReviews()
     setHidden(true)

@@ -14,7 +14,7 @@ const Main = () => {
     <div className="home-page">
       <h2 className="welcome">Welcome to the library!</h2>
       <h2>
-        In this library you don't have to be quite, look for any book review,
+        In this library you don't have to be quiet, look for any book review,
         add to your bookshelf and connect with your friends
       </h2>
       <button onClick={search} className="home-search">

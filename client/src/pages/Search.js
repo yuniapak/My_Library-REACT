@@ -26,7 +26,7 @@ const Search = ({ API_KEY, user, authenticated }) => {
   }
   const findUser = async () => {
     const res = await axios.get(
-      `https://librarydb.fly.dev/api/user/${searchQuery}`
+      `https://librarydb01.herokuapp.com/api/user/${searchQuery}`
     )
     console.log(res.data)
     setSearchedUser(res.data)

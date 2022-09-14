@@ -17,7 +17,7 @@ const Profile = ({ loading, user, setUserInfo, userInfo, currentUser }) => {
   const getLibraries = async () => {
     try {
       const result = await axios.get(
-        `https://librarydb.fly.dev/api/book/userbook/${user.id}`
+        `https://librarydb01.herokuapp.com/api/book/userbook/${user.id}`
       )
       result.data.map(({ library }) => {
         currentLibraries.push(library)
@@ -32,7 +32,7 @@ const Profile = ({ loading, user, setUserInfo, userInfo, currentUser }) => {
 
   const getCurrentUser = async () => {
     const result = await axios.get(
-      `https://librarydb.fly.dev/api/user/userId/${user.id}`
+      `https://librarydb01.herokuapp.com/api/user/userId/${user.id}`
     )
 
     setUserInfo(result.data)
@@ -41,7 +41,7 @@ const Profile = ({ loading, user, setUserInfo, userInfo, currentUser }) => {
 
   const getBooks = async (e) => {
     const result = await axios.get(
-      `https://librarydb.fly.dev/api/book/library/${user.id}/${e.target.value}`
+      `https://librarydb01.herokuapp.com/api/book/library/${user.id}/${e.target.value}`
     )
 
     setBooks(result.data)
@@ -55,7 +55,7 @@ const Profile = ({ loading, user, setUserInfo, userInfo, currentUser }) => {
 
   const getFollowing = async (id) => {
     const result = await axios.get(
-      `https://librarydb.fly.dev/api/user/following/${id}`
+      `https://librarydb01.herokuapp.com/api/user/following/${id}`
     )
 
     let followingCount = ' ' + result.data.length
@@ -65,7 +65,7 @@ const Profile = ({ loading, user, setUserInfo, userInfo, currentUser }) => {
 
   const getFollowers = async (id) => {
     const res = await axios.get(
-      `https://librarydb.fly.dev/api/user/followers/${id}`
+      `https://librarydb01.herokuapp.com/api/user/followers/${id}`
     )
     setFollowers(res.data.length)
   }

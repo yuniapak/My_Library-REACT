@@ -27,7 +27,7 @@ const UserPage = ({
   const followed = async () => {
     setFollow(false)
     const result = await axios.get(
-      `https://librarydb.fly.dev/api/user/friendList/${user.id}/${initialState.id}`
+      `https://librarydb01.herokuapp.com/api/user/friendList/${user.id}/${initialState.id}`
     )
     console.log(result.data)
     if (result.data.length > 0) {
@@ -47,7 +47,7 @@ const UserPage = ({
 
   const followUser = async () => {
     const result = await axios.post(
-      `https://librarydb.fly.dev/api/user/${user.id}/${initialState.id}`
+      `https://librarydb01.herokuapp.com/api/user/${user.id}/${initialState.id}`
     )
     console.log(result.data)
     setFollow(true)
@@ -60,7 +60,7 @@ const UserPage = ({
   //   unfollow searched user
   const unfollow = async () => {
     const result = await axios.delete(
-      `https://librarydb.fly.dev/api/user/${user.id}/${initialState.id}`
+      `https://librarydb01.herokuapp.com/api/user/${user.id}/${initialState.id}`
     )
     console.log('Unfollowed')
     setFollow(false)
@@ -72,7 +72,7 @@ const UserPage = ({
   }
   const findLibraries = async () => {
     const result = await axios.get(
-      `https://librarydb.fly.dev/api/book/userbook/${initialState.id}`
+      `https://librarydb01.herokuapp.com/api/book/userbook/${initialState.id}`
     )
     console.log(result.data)
     result.data.map(({ library }) => {
@@ -82,7 +82,7 @@ const UserPage = ({
   }
   const getBooks = async (e) => {
     const result = await axios.get(
-      `https://librarydb.fly.dev/api/book/library/${initialState.id}/${e.target.value}`
+      `https://librarydb01.herokuapp.com/api/book/library/${initialState.id}/${e.target.value}`
     )
     console.log(result.data)
     setBooks(result.data)
